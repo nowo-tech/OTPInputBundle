@@ -1,0 +1,31 @@
+{% use "form_div_layout.html.twig" %}
+
+{% block nowo_otp_input_widget %}
+    {% set currentValue = value is iterable ? value|join('') : (value ?? '') %}
+    {% set maxLength = otp_length ?? 6 %}
+    <div class="{{ otp_container_class }}"
+         data-nowo-otp-container="1"
+         data-nowo-otp-input-class="{{ otp_input_class }}"
+         data-nowo-otp-gap-class="{{ otp_gap_class }}"
+         data-nowo-otp-placeholder-char="{{ otp_placeholder_char }}">
+        {% set type = 'hidden' %}
+        {% set value = currentValue %}
+        {{ block('form_widget_simple') }}
+        <div class="{{ otp_gap_class }}" data-nowo-otp-render-target="1">
+            {% for i in 0..(maxLength - 1) %}
+                {% set digitValue = currentValue is iterable ? (currentValue[i]|default('')) : (currentValue|slice(i, 1)) %}
+                <input
+                    type="text"
+                    inputmode="{{ otp_numeric_only ? 'numeric' : 'text' }}"
+                    maxlength="1"
+                    autocomplete="one-time-code"
+                    class="{{ otp_input_class }}"
+                    data-nowo-otp-digit="{{ i }}"
+                    value="{{ digitValue }}"
+                    {% if otp_autofocus and i == 0 %}autofocus{% endif %}
+                    {% if otp_disabled %}disabled{% endif %}
+                />
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

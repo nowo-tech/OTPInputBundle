@@ -1,0 +1,13 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Nowo\OtpInputBundle\Form\OtpType:
+    arguments:
+      $defaultLength: '%nowo_otp_input.length%'
+      $defaultNumericOnly: '%nowo_otp_input.numeric_only%'
+      $defaultUppercase: '%nowo_otp_input.uppercase%'
+    tags:
+      - { name: form.type }

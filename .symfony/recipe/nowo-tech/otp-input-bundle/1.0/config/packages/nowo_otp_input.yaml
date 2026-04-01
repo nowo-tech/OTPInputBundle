@@ -1,0 +1,8 @@
+# OTP Input Bundle - default configuration
+# See docs/CONFIGURATION.md for options.
+
+nowo_otp_input:
+    length: 6
+    numeric_only: true
+    uppercase: true
+    form_theme: 'form_div_layout.html.twig'
