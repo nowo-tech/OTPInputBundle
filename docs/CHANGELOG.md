@@ -28,6 +28,8 @@ First stable release of `OtpInputBundle`.
 - Documentation: Installation, Configuration, Usage, Security, Contributing, Release, Engram, and demo notes.
 - Demo applications under `demo/symfony7` and `demo/symfony8` (with `composer test` / `test-coverage` smoke scripts using `bin/console about`).
 - PHPUnit and Vitest suites with high coverage; Makefile targets for QA (`release-check`, tests, CS, PHPStan, Rector).
+- Makefile `validate-translations` target that parses translation YAML without requiring `bin/console` in the bundle root.
+- Development Docker image: `git config safe.directory /app` so Composer does not hit “dubious ownership” on the mounted repo.
 - README demo screenshot (`docs/images/otp-demo.png`).
 
 [1.0.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.0
