@@ -17,6 +17,10 @@ This document describes upgrade notes for `OtpInputBundle`.
   - `uppercase` (default `true`)
   - `form_theme` (default `form_div_layout.html.twig`)
 
+## 1.0.1 (2026-04-15)
+
+Repository and demo tooling only (CI, Dependabot groups, Copilot guidelines, demo Docker DNS and translation ignores). The bundle API, configuration, and runtime behaviour are unchanged. Upgrade from `1.0.0` with no application code changes.
+
 ## 1.0.0 (2026-04-01)
 
 Initial public release. There is no earlier tagged version to migrate from.

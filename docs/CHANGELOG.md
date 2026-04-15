@@ -14,6 +14,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Removed
 
+## [1.0.1] - 2026-04-15
+
+### Added
+
+- GitHub Actions: semantic PR title check (`.github/workflows/pr-lint.yml`) and scheduled stale issue/PR handling (`.github/workflows/stale.yml`).
+- `.github/copilot-instructions.md` with AI contribution guidelines for this bundle.
+
+### Changed
+
+- Dependabot: grouped updates for Symfony (`symfony/*`) and PHPStan (`phpstan/*`) packages.
+- Demo Docker Compose (`demo/symfony7`, `demo/symfony8`): optional DNS servers (`8.8.8.8`, `8.8.4.4`) to reduce Composer DNS failures on Docker/WSL.
+- Demo `translations/.gitignore`: ignore common archive extensions under demo translation dirs.
+
 ## [1.0.0] - 2026-04-01
 
 First stable release of `OtpInputBundle`.
@@ -32,4 +45,5 @@ First stable release of `OtpInputBundle`.
 - Development Docker image: `git config safe.directory /app` so Composer does not hit “dubious ownership” on the mounted repo.
 - README demo screenshot (`docs/images/otp-demo.png`).
 
+[1.0.1]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.1
 [1.0.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.0
