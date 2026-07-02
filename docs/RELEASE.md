@@ -18,6 +18,7 @@ Use this checklist when cutting a new version. The workflow [.github/workflows/r
 4. **Optional checks**
    - `make validate-translations` (YAML translation files under `src/Resources/translations/`).
    - `make validate` (Composer metadata).
+   - `make update-deps` (refresh Composer lock files in bundle and demos before cutting a maintenance release).
 
    If `release-check-demos` fails because Docker cannot bind the default demo HTTP ports (`8010` / `8011`), stop the conflicting containers or run the demos with another port, for example:
 

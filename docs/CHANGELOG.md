@@ -14,6 +14,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Removed
 
+## [1.0.2] - 2026-07-02
+
+### Added
+
+- Makefile `update-deps` at bundle root and `update-deps-all` / per-demo `update-deps` (REQ-MAKE-008) to update Composer dependencies in the bundle and demos.
+- [Spec-driven development](SPEC-DRIVEN-DEVELOPMENT.md): product scope, user stories, and `REQ-*` traceability conventions.
+- CI matrix entries for Symfony **7.4** and **8.1** (alongside 7.0 and 8.0).
+
+### Changed
+
+- `composer.json`: corrected `homepage` and `support` repository URLs.
+- README: Symfony compatibility badge wording; link to spec-driven development doc.
+- Demo **symfony7**: Symfony `require` `7.0.*` → `7.4.*` with dependency sync.
+- Demo **symfony8**: Symfony `require` `8.0.*` → `8.1.*` with dependency sync.
+- Dev toolchain bumps: Symfony polyfills (v1.35.0), `@types/node`, rebuilt `otp-input.js` (build timestamp only; no runtime behaviour change).
+
+### Fixed
+
+- Demo Makefiles (`symfony7`, `symfony8`): corrected `Makefile.demo-update-deps.mk` include (missing `)`), and set `COMPOSE` / `SERVICE_PHP` so `make update-deps` runs reliably.
+
 ## [1.0.1] - 2026-04-15
 
 ### Added
@@ -45,5 +65,6 @@ First stable release of `OtpInputBundle`.
 - Development Docker image: `git config safe.directory /app` so Composer does not hit “dubious ownership” on the mounted repo.
 - README demo screenshot (`docs/images/otp-demo.png`).
 
+[1.0.2]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.2
 [1.0.1]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.1
 [1.0.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.0
