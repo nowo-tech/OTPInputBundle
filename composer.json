@@ -14,10 +14,10 @@
         "vite",
         "typescript"
     ],
-    "homepage": "https://github.com/nowo-tech/otp-input-bundle",
+    "homepage": "https://github.com/nowo-tech/OtpInputBundle",
     "support": {
-        "issues": "https://github.com/nowo-tech/otp-input-bundle/issues",
-        "source": "https://github.com/nowo-tech/otp-input-bundle"
+        "issues": "https://github.com/nowo-tech/OtpInputBundle/issues",
+        "source": "https://github.com/nowo-tech/OtpInputBundle"
     },
     "authors": [
         {

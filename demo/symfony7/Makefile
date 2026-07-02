@@ -53,3 +53,8 @@ update-bundle: ensure-up
 	docker-compose exec php sh -c "php bin/console cache:clear --env=dev && php bin/console assets:install public"
 
 release-check: ensure-up update-bundle test test-coverage
+
+# REQ-MAKE-008: update-deps (REQ-MAKE-008)
+COMPOSE := docker-compose
+SERVICE_PHP := php
+include $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/../../../.scripts/Makefile.demo-update-deps.mk)
