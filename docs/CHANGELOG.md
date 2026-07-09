@@ -14,6 +14,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Removed
 
+## [1.1.0] - 2026-07-09
+
+### Added
+
+- Bundle translations for **German**, **French**, **Italian**, **Dutch**, and **Portuguese** (`NowoOtpInputBundle.{de,fr,it,nl,pt}.yaml`).
+- [GitHub Spec Kit](SPEC-KIT.md) manual, baseline spec ([`specs/001-baseline/`](../../specs/001-baseline/)), Cursor Agent skills (`.cursor/skills/speckit-*`), and `.specify/` scaffolding.
+- CodeRabbit integration (`.coderabbit.yaml`, `.github/workflows/coderabbit.yml`).
+
+### Changed
+
+- Spanish placeholder translation corrected (`Introduce el código OTP`).
+- [Spec-driven development](SPEC-DRIVEN-DEVELOPMENT.md): user stories aligned with OTP product scope; Spec Kit layer and maintainer workflow.
+- README: link to Spec Kit documentation.
+- Demo Dockerfiles (`symfony7`, `symfony8`): install PHP `intl` extension for locale-aware demos.
+- CI / release workflows: `codecov/codecov-action` v6, `softprops/action-gh-release` v3, `actions/github-script` v9.
+
+### Fixed
+
 ## [1.0.2] - 2026-07-02
 
 ### Added
@@ -65,6 +83,7 @@ First stable release of `OtpInputBundle`.
 - Development Docker image: `git config safe.directory /app` so Composer does not hit “dubious ownership” on the mounted repo.
 - README demo screenshot (`docs/images/otp-demo.png`).
 
+[1.1.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.1.0
 [1.0.2]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.2
 [1.0.1]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.1
 [1.0.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.0

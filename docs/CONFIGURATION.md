@@ -24,3 +24,11 @@ Supported values:
 - `foundation_5_layout.html.twig`
 - `foundation_6_layout.html.twig`
 - `tailwind_2_layout.html.twig`
+
+## Translations
+
+The bundle ships placeholder strings under `src/Resources/translations/` for:
+
+- `en`, `es`, `de`, `fr`, `it`, `nl`, `pt`
+
+Symfony loads them from the `NowoOtpInputBundle` domain when the Translator component is enabled in your application. No extra bundle configuration is required.
