@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "/var/otp-input-bundle",
-                "reference": "b0bd48615017eec1ec26b661a5a1f739eafcfb55"
+                "reference": "894fc897504213dfc61c5eac1b29d8e43ed3bad6"
             },
             "require": {
                 "php": ">=8.1 <8.6",
