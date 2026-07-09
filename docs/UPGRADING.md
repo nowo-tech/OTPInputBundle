@@ -17,6 +17,12 @@ This document describes upgrade notes for `OtpInputBundle`.
   - `uppercase` (default `true`)
   - `form_theme` (default `form_div_layout.html.twig`)
 
+## 1.1.0 (2026-07-09)
+
+New bundled translation locales (**de**, **fr**, **it**, **nl**, **pt**) and corrected Spanish placeholder. Enable Symfony Translator in your app as usual; no configuration or code changes required beyond upgrading the package version.
+
+Repository-only additions (Spec Kit baseline, CodeRabbit, CI workflow bumps) do not affect the bundle API or runtime behaviour.
+
 ## 1.0.2 (2026-07-02)
 
 Repository, CI, demo, and Makefile tooling only (`update-deps`, demo Symfony bumps, CI matrix). The bundle API, configuration, and runtime behaviour are unchanged. Upgrade from `1.0.1` with no application code changes.
