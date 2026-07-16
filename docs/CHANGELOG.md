@@ -14,6 +14,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Removed
 
+## [1.2.0] - 2026-07-16
+
+### Removed
+
+- Demo application `demo/symfony7` (Symfony 7). Use `demo/symfony8` instead.
+
+### Changed
+
+- Demo aggregate Makefile and [Demo notes](DEMO-FRANKENPHP.md): only `demo/symfony8` remains.
+- Demo dependency lock / `config/reference.php` sync for `demo/symfony8`.
+
 ## [1.1.1] - 2026-07-16
 
 ### Added
@@ -99,6 +110,7 @@ First stable release of `OtpInputBundle`.
 - Development Docker image: `git config safe.directory /app` so Composer does not hit “dubious ownership” on the mounted repo.
 - README demo screenshot (`docs/images/otp-demo.png`).
 
+[1.2.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.2.0
 [1.1.1]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.1.1
 [1.1.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.1.0
 [1.0.2]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.2

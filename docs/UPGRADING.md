@@ -17,6 +17,12 @@ This document describes upgrade notes for `OtpInputBundle`.
   - `uppercase` (default `true`)
   - `form_theme` (default `form_div_layout.html.twig`)
 
+## 1.2.0 (2026-07-16)
+
+The Symfony 7 demo (`demo/symfony7`) was removed. For local demos use `demo/symfony8` only (`make -C demo up-symfony8` or `make -C demo/symfony8 up`).
+
+The Packagist package still supports Symfony `^6.0 || ^7.0 || ^8.0`. No application code or configuration changes are required when upgrading from `1.1.1`.
+
 ## 1.1.1 (2026-07-16)
 
 Repository hygiene and contributor tooling only (Code of Conduct, REQ-GIT-001 git hooks/CI, docs). The bundle API, configuration, and runtime behaviour are unchanged. Upgrade from `1.1.0` with no application code changes.
