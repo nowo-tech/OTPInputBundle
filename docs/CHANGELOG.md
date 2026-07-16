@@ -14,6 +14,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Removed
 
+## [1.1.1] - 2026-07-16
+
+### Added
+
+- [Contributor Covenant Code of Conduct](../CODE_OF_CONDUCT.md).
+- [GitHub Actions CI requirements](GITHUB_CI.md) documenting **REQ-GIT-001** (no Cursor co-author trailers).
+- Git hooks (`.githooks/commit-msg`), Makefile targets (`setup-hooks`, `check-no-cursor-coauthor`, `strip-cursor-coauthor-from-history`), and CI job `git-hygiene`.
+- Cursor rule `.cursor/rules/01-git-commits.mdc` (always apply).
+
+### Changed
+
+- `release-check` runs `check-no-cursor-coauthor` first.
+- Contributing and Release docs: hook setup and post-tag hygiene notes.
+- README: links to Code of Conduct and GitHub CI docs.
+- Composer lock sync (bundle and demos).
+
 ## [1.1.0] - 2026-07-09
 
 ### Added
@@ -83,6 +99,7 @@ First stable release of `OtpInputBundle`.
 - Development Docker image: `git config safe.directory /app` so Composer does not hit “dubious ownership” on the mounted repo.
 - README demo screenshot (`docs/images/otp-demo.png`).
 
+[1.1.1]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.1.1
 [1.1.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.1.0
 [1.0.2]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.2
 [1.0.1]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.1

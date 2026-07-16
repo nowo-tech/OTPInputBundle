@@ -20,10 +20,9 @@ Use this checklist when cutting a new version. The workflow [.github/workflows/r
    - `make validate` (Composer metadata).
    - `make update-deps` (refresh Composer lock files in bundle and demos before cutting a maintenance release).
 
-   If `release-check-demos` fails because Docker cannot bind the default demo HTTP ports (`8010` / `8011`), stop the conflicting containers or run the demos with another port, for example:
+   If `release-check-demos` fails because Docker cannot bind the default demo HTTP port (`8011`), stop the conflicting containers or run the demo with another port, for example:
 
    ```bash
-   (cd demo/symfony7 && PORT=18010 make release-check)
    (cd demo/symfony8 && PORT=18011 make release-check)
    ```
 
@@ -45,6 +44,8 @@ git push origin vX.Y.Z
 - Tag format must be **`vX.Y.Z`** (e.g. `v1.0.0`) so the workflow and Packagist recognize it.
 - After the push, GitHub Actions creates the release and appends the changelog entry for that version to the release body.
 - Packagist will pick up the new tag automatically.
+
+After creating the release commit and tag, run `make check-no-cursor-coauthor` again **before** `git push` (REQ-GIT-001). The release commit itself is not covered by an earlier `release-check` run.
 
 ### Example for v1.0.0
 
