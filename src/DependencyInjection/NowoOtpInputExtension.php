@@ -40,18 +40,28 @@ final class NowoOtpInputExtension extends Extension implements PrependExtensionI
 
     public function prepend(ContainerBuilder $container): void
     {
-        if (!$container->hasExtension('twig')) {
-            return;
-        }
-
         $configs   = $container->getExtensionConfig(Configuration::ALIAS);
         $config    = $this->processConfiguration(new Configuration(), $configs);
         $formTheme = $config['form_theme'] ?? 'form_div_layout.html.twig';
         $themePath = self::FORM_THEME_MAP[$formTheme] ?? self::FORM_THEME_MAP['form_div_layout.html.twig'];
 
-        $container->prependExtensionConfig('twig', [
-            'form_themes' => [$themePath],
-        ]);
+        if ($container->hasExtension('twig')) {
+            $container->prependExtensionConfig('twig', [
+                'form_themes' => [$themePath],
+            ]);
+        }
+
+        if ($container->hasExtension('framework')) {
+            $container->prependExtensionConfig('framework', [
+                'assets' => [
+                    'packages' => [
+                        Configuration::ALIAS => [
+                            'base_path' => '/bundles/nowootpinput',
+                        ],
+                    ],
+                ],
+            ]);
+        }
     }
 
     public function getAlias(): string

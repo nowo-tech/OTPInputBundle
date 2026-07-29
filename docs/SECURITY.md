@@ -1,5 +1,7 @@
 # Security Policy
 
+
+
 ## Table of contents
 
 - [Supported Versions](#supported-versions)
@@ -75,7 +77,8 @@ Before tagging a release, confirm:
 | **Logging** | Logs do not print secrets, tokens, or session identifiers unnecessarily. |
 | **Cryptography** | If used: keys from secure config; never hardcoded. |
 | **Permissions / exposure** | Routes and admin features documented; roles configured for production. |
-| **Limits / DoS** | Timeouts, size limits, rate limits where applicable. |
+| **Limits / DoS** | Timeouts, size limits, rate limits where applicable. OTP brute-force / rate limits are host-app responsibility. |
+| **REQ-SEC-004 (AI audit)** | Pass (conditional) — Low residual (CSS class options are developer-trusted; no Critical/High); see monorepo `BUNDLES_SECURITY_ANALYSIS.md` (audit 2026-07-29). |
 
 Record confirmation in the release PR or tag notes.
 

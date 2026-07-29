@@ -4,6 +4,38 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+
+
+## Table of contents
+
+- [[Unreleased]](#unreleased)
+  - [Added](#added)
+  - [Changed](#changed)
+  - [Fixed](#fixed)
+  - [Removed](#removed)
+- [[1.3.0] - 2026-07-29](#130---2026-07-29)
+  - [Added](#added-1)
+  - [Changed](#changed-1)
+- [[1.2.0] - 2026-07-16](#120---2026-07-16)
+  - [Removed](#removed-1)
+  - [Changed](#changed-2)
+- [[1.1.1] - 2026-07-16](#111---2026-07-16)
+  - [Added](#added-2)
+  - [Changed](#changed-3)
+- [[1.1.0] - 2026-07-09](#110---2026-07-09)
+  - [Added](#added-3)
+  - [Changed](#changed-4)
+  - [Fixed](#fixed-1)
+- [[1.0.2] - 2026-07-02](#102---2026-07-02)
+  - [Added](#added-4)
+  - [Changed](#changed-5)
+  - [Fixed](#fixed-2)
+- [[1.0.1] - 2026-04-15](#101---2026-04-15)
+  - [Added](#added-5)
+  - [Changed](#changed-6)
+- [[1.0.0] - 2026-04-01](#100---2026-04-01)
+  - [Added](#added-6)
+
 ## [Unreleased]
 
 ### Added
@@ -13,6 +45,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 ### Removed
+
+## [1.3.0] - 2026-07-29
+
+### Added
+
+- Named Symfony asset package `nowo_otp_input` (`base_path` `/bundles/nowootpinput`) via DI `prepend` when FrameworkBundle is present.
+- FrankenPHP worker-mode friendliness: README banner, `nowo-tech/phpstan-frankenphp` rulesets (classic + worker).
+- Demo `FRANKENPHP_MODE` (`worker` / `classic`) with entrypoint switching; FrankenPHP PHP 8.5 demo image.
+- `make demo-smoke` / `demo/Makefile` `release-verify` (HTTP smoke before teardown).
+- `make coverage-check` (fail under 99% PHP coverage) and `make check-open-prs`.
+- Dependabot npm ecosystem for Vite/TypeScript assets.
+- Docs: asset package usage, Twig template overrides, translation overrides, demo mode switching.
+
+### Changed
+
+- README: declare FrankenPHP worker-mode friendly (replaces previous “not supported” note).
+- CI / PHPUnit: `SYMFONY_DEPRECATIONS_HELPER=max[direct]=0`.
+- Makefile: prefer Docker Compose V2; optional `-include` for monorepo `update-deps` helpers; `release-check` runs `check-open-prs` and `coverage-check`.
+- PHP-CS-Fixer: `fully_qualified_strict_types.import_symbols`.
 
 ## [1.2.0] - 2026-07-16
 
@@ -110,6 +161,7 @@ First stable release of `OtpInputBundle`.
 - Development Docker image: `git config safe.directory /app` so Composer does not hit “dubious ownership” on the mounted repo.
 - README demo screenshot (`docs/images/otp-demo.png`).
 
+[1.3.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.3.0
 [1.2.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.2.0
 [1.1.1]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.1.1
 [1.1.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.1.0

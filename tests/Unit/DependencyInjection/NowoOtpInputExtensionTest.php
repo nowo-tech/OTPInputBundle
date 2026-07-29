@@ -7,6 +7,7 @@ namespace Nowo\OtpInputBundle\Tests\Unit\DependencyInjection;
 use Nowo\OtpInputBundle\DependencyInjection\NowoOtpInputExtension;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 
 /**
  * @covers \Nowo\OtpInputBundle\DependencyInjection\NowoOtpInputExtension
@@ -53,7 +54,7 @@ final class NowoOtpInputExtensionTest extends TestCase
         $extension = new NowoOtpInputExtension();
 
         $container = new ContainerBuilder();
-        $container->registerExtension(new class extends \Symfony\Component\DependencyInjection\Extension\Extension {
+        $container->registerExtension(new class extends Extension {
             public function load(array $configs, ContainerBuilder $container): void
             {
             }
@@ -72,7 +73,7 @@ final class NowoOtpInputExtensionTest extends TestCase
         self::assertSame('@NowoOtpInputBundle/Form/otp_input_theme_bootstrap5.html.twig', $twigConfigs[0]['form_themes'][0]);
 
         $container2 = new ContainerBuilder();
-        $container2->registerExtension(new class extends \Symfony\Component\DependencyInjection\Extension\Extension {
+        $container2->registerExtension(new class extends Extension {
             public function load(array $configs, ContainerBuilder $container): void
             {
             }
@@ -88,5 +89,42 @@ final class NowoOtpInputExtensionTest extends TestCase
         $extension->prepend($container2);
         $twigConfigs2 = $container2->getExtensionConfig('twig');
         self::assertSame('@NowoOtpInputBundle/Form/otp_input_theme.html.twig', $twigConfigs2[0]['form_themes'][0]);
+    }
+
+    public function testPrependAddsNamedAssetPackageWhenFrameworkExtensionPresent(): void
+    {
+        $frameworkExtension = new class extends Extension {
+            public function load(array $configs, ContainerBuilder $container): void
+            {
+            }
+
+            public function getAlias(): string
+            {
+                return 'framework';
+            }
+        };
+        $container = new ContainerBuilder();
+        $container->registerExtension($frameworkExtension);
+
+        $extension = new NowoOtpInputExtension();
+        $extension->prepend($container);
+
+        $frameworkConfig = $container->getExtensionConfig('framework');
+        self::assertNotEmpty($frameworkConfig);
+        self::assertSame(
+            '/bundles/nowootpinput',
+            $frameworkConfig[0]['assets']['packages']['nowo_otp_input']['base_path'] ?? null,
+        );
+    }
+
+    public function testPrependSkipsAssetPackageWhenFrameworkExtensionMissing(): void
+    {
+        $extension = new NowoOtpInputExtension();
+        $container = new ContainerBuilder();
+
+        $extension->prepend($container);
+
+        self::assertFalse($container->hasExtension('framework'));
+        self::assertSame([], $container->getExtensionConfig('framework'));
     }
 }

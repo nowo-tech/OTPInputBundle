@@ -2,6 +2,21 @@
 
 This document describes upgrade notes for `OtpInputBundle`.
 
+
+
+## Table of contents
+
+- [Current compatibility baseline](#current-compatibility-baseline)
+- [Public API reminders](#public-api-reminders)
+- [1.3.0 (2026-07-29)](#130-2026-07-29)
+- [1.2.0 (2026-07-16)](#120-2026-07-16)
+- [1.1.1 (2026-07-16)](#111-2026-07-16)
+- [1.1.0 (2026-07-09)](#110-2026-07-09)
+- [1.0.2 (2026-07-02)](#102-2026-07-02)
+- [1.0.1 (2026-04-15)](#101-2026-04-15)
+- [1.0.0 (2026-04-01)](#100-2026-04-01)
+- [Breaking changes](#breaking-changes)
+
 ## Current compatibility baseline
 
 - PHP: `>=8.1 <8.6`
@@ -16,6 +31,21 @@ This document describes upgrade notes for `OtpInputBundle`.
   - `numeric_only` (default `true`)
   - `uppercase` (default `true`)
   - `form_theme` (default `form_div_layout.html.twig`)
+- Asset package name: `nowo_otp_input` (maps to `/bundles/nowootpinput`)
+
+## 1.3.0 (2026-07-29)
+
+**Recommended:** load the OTP script with the named asset package:
+
+```twig
+<script src="{{ asset('otp-input.js', 'nowo_otp_input') }}"></script>
+```
+
+Hard-coded paths such as `/bundles/nowootpinput/otp-input.js` still work after `assets:install`, but the package name is the supported integration.
+
+No changes are required to `nowo_otp_input` YAML configuration or `OtpType` form options when upgrading from `1.2.0`.
+
+Demo maintainers: set `FRANKENPHP_MODE=worker|classic` in `demo/symfony8/.env` and recreate the container after changing it.
 
 ## 1.2.0 (2026-07-16)
 

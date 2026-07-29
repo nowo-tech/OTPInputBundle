@@ -10,7 +10,20 @@
 
 Customizable Symfony OTP `FormType` with multiple visible inputs that map to a single field value.
 
-FrankenPHP worker mode: Not declared as supported for this bundle at the moment.
+![FrankenPHP Friendly Worker Mode](docs/images/frankenphp-friendly.png)
+
+This bundle is **FrankenPHP worker mode friendly**.
+
+
+
+## Table of contents
+
+- [Demo preview](#demo-preview)
+- [Features](#features)
+- [Documentation](#documentation)
+  - [Additional documentation](#additional-documentation)
+- [Quick usage](#quick-usage)
+- [Tests and coverage](#tests-and-coverage)
 
 ## Demo preview
 

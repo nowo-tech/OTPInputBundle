@@ -44,3 +44,19 @@ updates:
     commit-message:
       prefix: "chore(ci):"
 
+  # Maintain npm/pnpm dependencies for Vite/TypeScript assets (REQ-GH-002)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Europe/Madrid"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "HecFranco"
+    labels:
+      - "dependencies"
+      - "javascript"
+    commit-message:
+      prefix: "chore(deps):"

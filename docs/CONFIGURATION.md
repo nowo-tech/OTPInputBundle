@@ -1,5 +1,14 @@
 # Configuration
 
+## Table of contents
+
+- [YAML](#yaml)
+- [form_theme](#form_theme)
+- [Translations](#translations)
+- [Translation overrides](#translation-overrides)
+
+## YAML
+
 ```yaml
 # config/packages/nowo_otp_input.yaml
 nowo_otp_input:
@@ -32,3 +41,18 @@ The bundle ships placeholder strings under `src/Resources/translations/` for:
 - `en`, `es`, `de`, `fr`, `it`, `nl`, `pt`
 
 Symfony loads them from the `NowoOtpInputBundle` domain when the Translator component is enabled in your application. No extra bundle configuration is required.
+
+## Translation overrides
+
+To override catalogue entries in the host application:
+
+1. Use the same domain: **`NowoOtpInputBundle`**.
+2. Create an app file such as `translations/NowoOtpInputBundle.es.yaml` (or `.xlf`).
+3. Override only the keys you need. Missing keys fall back to the bundle catalogue.
+
+Example:
+
+```yaml
+# translations/NowoOtpInputBundle.es.yaml
+otp.placeholder: 'Tu código'
+```

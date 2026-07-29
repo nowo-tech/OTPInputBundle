@@ -7,7 +7,7 @@ This demo runs with **FrankenPHP** (Caddy, HTTP on port 80). In **dev** (`APP_EN
 ```bash
 make up
 make install
-# Open http://localhost:8011 (or set PORT in .env)
+# Open http://localhost:8071 (or set PORT in .env)
 ```
 
 Language is switched via URL (locale prefix). Supported: `en`, `es`. Use the language dropdown in the navbar.

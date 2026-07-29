@@ -6,6 +6,7 @@ namespace Nowo\OtpInputBundle\Tests\Unit\Form;
 
 use Nowo\OtpInputBundle\Form\OtpType;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\FormView;
@@ -92,7 +93,7 @@ final class OtpTypeTest extends TestCase
     {
         $type = new OtpType();
 
-        self::assertSame(\Symfony\Component\Form\Extension\Core\Type\TextType::class, $type->getParent());
+        self::assertSame(TextType::class, $type->getParent());
         self::assertSame('nowo_otp_input', $type->getBlockPrefix());
     }
 

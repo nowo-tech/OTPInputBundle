@@ -8,7 +8,7 @@ services:
     container_name: otp-input-demo-symfony8-php
     working_dir: /app
     ports:
-      - "${PORT:-8011}:80"
+      - "${PORT:-8071}:80"
     volumes:
       - .:/app
       - ../..:/var/otp-input-bundle
@@ -20,6 +20,7 @@ services:
       - APP_ENV=dev
       - APP_DEBUG=1
       - APP_SECRET=${APP_SECRET:-demo-secret}
+      - FRANKENPHP_MODE=${FRANKENPHP_MODE:-worker}
     # Mitigate Docker/WSL DNS failures resolving repo.packagist.org (composer curl error 6).
     dns:
       - 8.8.8.8
