@@ -1,10 +1,6 @@
 # OTP Input Bundle
-[![CI](https://github.com/nowo-tech/OtpInputBundle/actions/workflows/ci.yml/badge.svg)](https://github.com/nowo-tech/OtpInputBundle/actions/workflows/ci.yml)
-[![Packagist Version](https://img.shields.io/packagist/v/nowo-tech/otp-input-bundle.svg?style=flat)](https://packagist.org/packages/nowo-tech/otp-input-bundle)
-[![Packagist Downloads](https://img.shields.io/packagist/dt/nowo-tech/otp-input-bundle.svg)](https://packagist.org/packages/nowo-tech/otp-input-bundle)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![PHP](https://img.shields.io/badge/PHP-8.1%2B-777BB4?logo=php)](https://php.net)
-[![Symfony](https://img.shields.io/badge/Symfony-6.0%2B%20%7C%207.4%2B%20%7C%208.0%20%7C%208.1%2B-000000?logo=symfony)](https://symfony.com)
+
+[![CI](https://github.com/nowo-tech/OtpInputBundle/actions/workflows/ci.yml/badge.svg)](https://github.com/nowo-tech/OtpInputBundle/actions/workflows/ci.yml) [![Packagist Version](https://img.shields.io/packagist/v/nowo-tech/otp-input-bundle.svg?style=flat)](https://packagist.org/packages/nowo-tech/otp-input-bundle) [![Packagist Downloads](https://img.shields.io/packagist/dt/nowo-tech/otp-input-bundle.svg)](https://packagist.org/packages/nowo-tech/otp-input-bundle) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![PHP](https://img.shields.io/badge/PHP-8.1%2B-777BB4?logo=php)](https://php.net) [![Symfony](https://img.shields.io/badge/Symfony-6.0%2B%20%7C%207.4%2B%20%7C%208.0%20%7C%208.1%2B-000000?logo=symfony)](https://symfony.com)
 
 > Star **Found this useful?** Install it from Packagist and support the project on GitHub.
 
@@ -14,20 +10,13 @@ Customizable Symfony OTP `FormType` with multiple visible inputs that map to a s
 
 This bundle is **FrankenPHP worker mode friendly**.
 
-
-
 ## Table of contents
 
-- [Demo preview](#demo-preview)
 - [Features](#features)
-- [Documentation](#documentation)
-  - [Additional documentation](#additional-documentation)
 - [Quick usage](#quick-usage)
+- [Demo preview](#demo-preview)
+- [Documentation](#documentation)
 - [Tests and coverage](#tests-and-coverage)
-
-## Demo preview
-
-![OTP Input Bundle demo](docs/images/otp-demo.png)
 
 ## Features
 
@@ -36,6 +25,26 @@ This bundle is **FrankenPHP worker mode friendly**.
 - Stores data as one string value in your DTO/entity.
 - Customizable length, classes, numeric/alphanumeric mode, and uppercase normalization.
 - TypeScript + Vite assets in `src/Resources/assets`.
+
+## Quick usage
+
+```php
+use Nowo\OtpInputBundle\Form\OtpType;
+
+$builder->add('otpCode', OtpType::class, [
+    'length' => 6,
+    'numeric_only' => true,
+    'container_class' => 'd-flex gap-2',
+    'input_class' => 'form-control text-center',
+    'gap_class' => 'otp-grid',
+]);
+```
+
+The value received in `otpCode` is a single string like `123456`.
+
+## Demo preview
+
+![OTP Input Bundle demo](docs/images/otp-demo.png)
 
 ## Documentation
 
@@ -56,22 +65,6 @@ This bundle is **FrankenPHP worker mode friendly**.
 ### Additional documentation
 
 - [Demo notes](docs/DEMO-FRANKENPHP.md)
-
-## Quick usage
-
-```php
-use Nowo\OtpInputBundle\Form\OtpType;
-
-$builder->add('otpCode', OtpType::class, [
-    'length' => 6,
-    'numeric_only' => true,
-    'container_class' => 'd-flex gap-2',
-    'input_class' => 'form-control text-center',
-    'gap_class' => 'otp-grid',
-]);
-```
-
-The value received in `otpCode` is a single string like `123456`.
 
 ## Tests and coverage
 
