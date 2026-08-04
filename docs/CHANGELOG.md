@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.4.0] - 2026-08-04](#140---2026-08-04)
   - [Added](#added)
   - [Changed](#changed)
   - [Fixed](#fixed)
@@ -38,13 +39,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-08-04
+
 ### Added
+- **REQ-TWIG-004:** require `twig/extra-bundle` + `twig/string-extra`; `make check-twig-extra` in `release-check`; demos register `TwigExtraBundle`.
+- **Twig-CS-Fixer:** `vincentlanglet/twig-cs-fixer`, `.twig-cs-fixer.php`, `composer twig:lint` / `twig:fix`.
 
 ### Changed
 
 ### Fixed
 
 ### Removed
+
+[1.4.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.4.0
 
 ## [1.3.0] - 2026-07-29
 

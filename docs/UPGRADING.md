@@ -6,6 +6,8 @@ This document describes upgrade notes for `OtpInputBundle`.
 
 ## Table of contents
 
+- [Unreleased](#unreleased)
+- [To 1.4.0](#to-140)
 - [Current compatibility baseline](#current-compatibility-baseline)
 - [Public API reminders](#public-api-reminders)
 - [1.3.0 (2026-07-29)](#130-2026-07-29)
@@ -16,6 +18,33 @@ This document describes upgrade notes for `OtpInputBundle`.
 - [1.0.1 (2026-04-15)](#101-2026-04-15)
 - [1.0.0 (2026-04-01)](#100-2026-04-01)
 - [Breaking changes](#breaking-changes)
+
+
+## Unreleased
+
+## To 1.4.0
+
+From **1.3.0** — Adds required Twig Extra (REQ-TWIG-004) and Twig-CS-Fixer. Register TwigExtraBundle if Flex did not.
+
+```bash
+composer update nowo-tech/otp-input-bundle
+php bin/console cache:clear
+```
+
+### Twig Extra Bundle (REQ-TWIG-004)
+
+Hosts that render this bundle's Twig templates must install:
+
+```bash
+composer require twig/extra-bundle twig/string-extra
+```
+
+and enable `Twig\Extra\TwigExtraBundle\TwigExtraBundle`. Flex recipes usually register it automatically.
+
+### Twig-CS-Fixer (maintainers)
+
+Package maintainers: `composer twig:lint` / `composer twig:fix` use `.twig-cs-fixer.php` over `src/` (and `templates/` when present).
+
 
 ## Current compatibility baseline
 

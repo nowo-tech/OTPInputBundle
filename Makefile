@@ -1,4 +1,4 @@
-.PHONY: up down build shell ensure-up install assets assets-test test test-coverage coverage-check test-ts cs-check cs-fix phpstan rector rector-dry qa composer-sync release-check release-check-demos demo-smoke validate-translations clean update validate check-no-cursor-coauthor check-open-prs strip-cursor-coauthor-from-history
+.PHONY: up down build shell ensure-up install assets assets-test test test-coverage coverage-check test-ts cs-check cs-fix phpstan rector rector-dry qa composer-sync release-check release-check-demos demo-smoke validate-translations clean update validate check-no-cursor-coauthor check-open-prs strip-cursor-coauthor-from-history check-twig-extra
 
 COMPOSE_FILE ?= docker-compose.yml
 # Prefer Compose V2 plugin (GitHub Actions / modern Docker Desktop); fall back to docker-compose V1 (REQ-MAKE-010).
@@ -68,7 +68,7 @@ rector: ensure-up
 rector-dry: ensure-up
 	$(COMPOSE) exec -T $(SERVICE_PHP) composer rector-dry
 
-qa: cs-check test
+qa: cs-check twig-lint test
 
 composer-sync: ensure-up
 	$(COMPOSE) exec -T $(SERVICE_PHP) composer validate --strict
@@ -84,7 +84,11 @@ check-open-prs:
 	@chmod +x .scripts/check-open-prs.sh
 	@GH_REPO=nowo-tech/OTPInputBundle ./.scripts/check-open-prs.sh
 
-release-check: check-no-cursor-coauthor check-open-prs ensure-up composer-sync cs-fix cs-check rector-dry phpstan coverage-check release-check-demos test-ts
+
+check-twig-extra:
+	@chmod +x .scripts/check-twig-extra.sh
+	@./.scripts/check-twig-extra.sh
+release-check: check-no-cursor-coauthor check-open-prs check-twig-extra ensure-up composer-sync cs-fix cs-check rector-dry phpstan coverage-check release-check-demos test-ts
 
 clean:
 	rm -rf vendor coverage coverage-ts .phpunit.cache coverage-php.txt coverage-ts.txt
@@ -116,3 +120,6 @@ check-no-cursor-coauthor:
 strip-cursor-coauthor-from-history:
 	@chmod +x .scripts/strip-cursor-coauthor-from-history.sh
 	@./.scripts/strip-cursor-coauthor-from-history.sh master
+
+twig-lint: ensure-up
+	@$(COMPOSE) exec -T $(SERVICE_PHP) composer twig:lint || $(COMPOSE) exec -T $(SERVICE_PHP) ./vendor/bin/twig-cs-fixer lint --config=.twig-cs-fixer.php
