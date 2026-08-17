@@ -24,7 +24,9 @@ This bundle is **FrankenPHP worker mode friendly**.
 - Multi-input UI rendered in Twig form themes.
 - Stores data as one string value in your DTO/entity.
 - Customizable length, classes, numeric/alphanumeric mode, and uppercase normalization.
-- TypeScript + Vite assets in `src/Resources/assets`.
+- TypeScript + Vite assets in `src/Resources/assets` (named package `nowo_otp_input`).
+- Paste / autofill (`autocomplete="one-time-code"`); translations **de, en, es, fr, it, nl, pt**.
+- Multi-framework Twig themes (Bootstrap, Tailwind, Foundation, Symfony default).
 
 ## Quick usage
 
