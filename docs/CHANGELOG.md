@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.4.1] - 2026-08-18](#141---2026-08-18)
 - [[1.4.0] - 2026-08-04](#140---2026-08-04)
   - [Added](#added)
   - [Changed](#changed)
@@ -38,6 +39,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - [Added](#added-6)
 
 ## [Unreleased]
+
+## [1.4.1] - 2026-08-18
+
+### Changed
+
+- **Demos:** pin `nowo-tech/hot-reload-bundle` to `^1.4` with FrankenPHP Mercure/`hot_reload` (`dev`/`test` only).
+
+[1.4.1]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.4.1
 
 ## [1.4.0] - 2026-08-04
 

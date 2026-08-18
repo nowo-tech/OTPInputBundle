@@ -7,6 +7,7 @@ This document describes upgrade notes for `OtpInputBundle`.
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 1.4.1](#to-141)
 - [To 1.4.0](#to-140)
 - [Current compatibility baseline](#current-compatibility-baseline)
 - [Public API reminders](#public-api-reminders)
@@ -21,6 +22,14 @@ This document describes upgrade notes for `OtpInputBundle`.
 
 
 ## Unreleased
+
+## To 1.4.1
+
+From **1.4.0** — No application upgrade steps. **Demos only:** Hot Reload Bundle `^1.4` (FrankenPHP Mercure/`hot_reload`, `dev`/`test`).
+
+```bash
+composer update nowo-tech/otp-input-bundle
+```
 
 ## To 1.4.0
 
