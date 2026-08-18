@@ -4,6 +4,8 @@
 composer require nowo-tech/otp-input-bundle
 ```
 
+The Flex recipe lives under `.symfony/recipe/` (copy those files if Flex does not apply them).
+
 Enable bundle if Flex does not do it automatically:
 
 ```php
