@@ -7,6 +7,7 @@ This document describes upgrade notes for `OtpInputBundle`.
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 1.4.2](#to-142)
 - [To 1.4.1](#to-141)
 - [To 1.4.0](#to-140)
 - [Current compatibility baseline](#current-compatibility-baseline)
@@ -22,6 +23,14 @@ This document describes upgrade notes for `OtpInputBundle`.
 
 
 ## Unreleased
+
+## To 1.4.2
+
+From **1.4.1** — No application upgrade steps.
+
+```bash
+composer update nowo-tech/otp-input-bundle
+```
 
 ## To 1.4.1
 
