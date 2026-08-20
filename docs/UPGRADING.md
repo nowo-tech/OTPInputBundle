@@ -24,6 +24,14 @@ This document describes upgrade notes for `OtpInputBundle`.
 
 ## Unreleased
 
+## To 1.4.3
+
+From **1.4.2** — No application upgrade steps (dev/demo frontend Dependabot bumps only).
+
+```bash
+composer update nowo-tech/otp-input-bundle
+```
+
 ## To 1.4.2
 
 From **1.4.1** — No application upgrade steps.

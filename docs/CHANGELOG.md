@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.4.3] - 2026-08-20](#143---2026-08-20)
 - [[1.4.2] - 2026-08-19](#142---2026-08-19)
 - [[1.4.1] - 2026-08-18](#141---2026-08-18)
 - [[1.4.0] - 2026-08-04](#140---2026-08-04)
@@ -40,6 +41,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - [Added](#added-6)
 
 ## [Unreleased]
+
+## [1.4.3] - 2026-08-20
+
+### Security
+
+- **Dev/demo frontend:** bump `vitest` to **^3.2.6** (Critical advisory); pnpm overrides for `vite` ≥6.4.3, `postcss`, `nanoid`, `brace-expansion@>=4`.
 
 ## [1.4.2] - 2026-08-19
 
