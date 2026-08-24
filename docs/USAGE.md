@@ -37,6 +37,8 @@ Include the built OTP script in your layout (after `assets:install`):
 
 The `nowo_otp_input` package maps to `/bundles/nowootpinput` (the path created by `assets:install`).
 
+The script defines the `<nowo-otp-input>` custom element (light DOM: hidden Symfony input + visible digit boxes) and still initializes legacy `[data-nowo-otp-container="1"]` wrappers.
+
 ## Customization
 
 - `length`: number of OTP characters (3-12)
