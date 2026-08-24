@@ -9,7 +9,11 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'text-summary', 'html'],
       reportsDirectory: './coverage-ts',
-      include: ['src/Resources/assets/src/otp-input.ts'],
+      include: [
+        'src/Resources/assets/src/otp-input.ts',
+        'src/Resources/assets/src/otp-input-lib.ts',
+        'src/Resources/assets/src/nowo-otp-input-element.ts',
+      ],
       exclude: ['**/*.test.ts', '**/node_modules/**'],
     },
   },

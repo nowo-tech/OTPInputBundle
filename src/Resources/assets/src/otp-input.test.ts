@@ -23,7 +23,9 @@ function setReadyState(value: DocumentReadyState): void {
 }
 
 describe('otp-input entrypoint', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
+    const { stopObserving } = await import('./otp-input-lib');
+    stopObserving();
     vi.resetModules();
     document.body.innerHTML = '';
     setReadyState('complete');
@@ -45,6 +47,9 @@ describe('otp-input entrypoint', () => {
 
     const hidden = document.querySelector('input[data-controller*="nowo-otp-input"]') as HTMLInputElement;
     const digits = Array.from(document.querySelectorAll<HTMLInputElement>('input[data-nowo-otp-digit]'));
+    const host = document.querySelector('[data-nowo-otp-container="1"]') as HTMLElement;
+
+    expect(host.getAttribute('data-nowo-otp-init')).toBe('1');
 
     digits[0].value = 'a1';
     digits[0].dispatchEvent(new Event('input', { bubbles: true }));

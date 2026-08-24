@@ -3,7 +3,7 @@
 {% block nowo_otp_input_widget %}
     {% set currentValue = value is iterable ? value|join('') : (value ?? '') %}
     {% set maxLength = otp_length ?? 6 %}
-    <div class="{{ otp_container_class }}"
+    <nowo-otp-input class="{{ otp_container_class }}"
          data-nowo-otp-container="1"
          data-nowo-otp-input-class="{{ otp_input_class }}"
          data-nowo-otp-gap-class="{{ otp_gap_class }}"
@@ -27,5 +27,5 @@
                 />
             {% endfor %}
         </div>
-    </div>
+    </nowo-otp-input>
 {% endblock %}

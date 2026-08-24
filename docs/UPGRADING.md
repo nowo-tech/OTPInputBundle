@@ -42,6 +42,8 @@ composer update nowo-tech/otp-input-bundle
 
 ## Unreleased
 
+The default form theme now wraps the widget in `<nowo-otp-input>`. Include the same `otp-input.js` asset as before. Custom theme overrides that copied `otp_input_theme.html.twig` should switch the outer `<div>` to `<nowo-otp-input>` (legacy `data-nowo-otp-container="1"` wrappers still initialize).
+
 ## To 1.4.3
 
 From **1.4.2** — No application upgrade steps (dev/demo frontend Dependabot bumps only).

@@ -42,6 +42,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- **Web Component:** the form theme now renders `<nowo-otp-input>` (light DOM). `otp-input.js` defines the custom element and keeps initializing legacy `[data-nowo-otp-container="1"]` hosts.
+
 
 ## [1.4.4] - 2026-08-24
 
