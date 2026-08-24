@@ -42,6 +42,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+
+## [1.4.4] - 2026-08-24
+
+### Changed
+
+- Raise minimum PHP to **8.2** and sync README badge (REQ-SF-001).
+- **Assets:** English JSDoc on TypeScript sources (REQ-ASSETS-002).
+- **Docs:** PHP-FIG PSR evaluation (REQ-CS-007).
+
+### Notes
+
+- **No API or configuration changes** for integrators unless noted above.
+
+[1.4.4]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.4.4
+
 ## [1.4.3] - 2026-08-20
 
 ### Security

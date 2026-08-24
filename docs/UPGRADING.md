@@ -6,6 +6,8 @@ This document describes upgrade notes for `OtpInputBundle`.
 
 ## Table of contents
 
+
+- [From 1.4.3 to 1.4.4](#from-143-to-144)
 - [Unreleased](#unreleased)
 - [To 1.4.2](#to-142)
 - [To 1.4.1](#to-141)
@@ -20,6 +22,22 @@ This document describes upgrade notes for `OtpInputBundle`.
 - [1.0.1 (2026-04-15)](#101-2026-04-15)
 - [1.0.0 (2026-04-01)](#100-2026-04-01)
 - [Breaking changes](#breaking-changes)
+
+## From 1.4.3 to 1.4.4
+
+Review the [CHANGELOG](CHANGELOG.md) entry. PHP **8.2+** may now be required.
+
+```bash
+composer update nowo-tech/otp-input-bundle
+```
+
+## From 1.4.3 to 1.4.4
+
+Review the [CHANGELOG](CHANGELOG.md) entry. PHP **8.2+** may now be required.
+
+```bash
+composer update nowo-tech/otp-input-bundle
+```
 
 
 ## Unreleased
