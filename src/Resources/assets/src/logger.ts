@@ -33,6 +33,13 @@ function formatArgs(args: unknown[]): unknown[] {
   );
 }
 
+/**
+ * Creates a logger for a bundle. Use the same logger instance across the bundle.
+ *
+ * @param name - Short name for log prefix (e.g. `otp-input`).
+ * @param options - Optional build time for `scriptLoaded()`.
+ * @returns A {@link BundleLogger} bound to `name`.
+ */
 export function createBundleLogger(name: string, options: BundleLoggerOptions = {}): BundleLogger {
   const prefix = `[${name}]`;
   const { buildTime } = options;
