@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.5.0] - 2026-09-03](#150---2026-09-03)
 - [[1.4.3] - 2026-08-20](#143---2026-08-20)
 - [[1.4.2] - 2026-08-19](#142---2026-08-19)
 - [[1.4.1] - 2026-08-18](#141---2026-08-18)
@@ -42,10 +43,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-09-03
+
 ### Changed
 
 - **Web Component:** the form theme now renders `<nowo-otp-input>` (light DOM). `otp-input.js` defines the custom element and keeps initializing legacy `[data-nowo-otp-container="1"]` hosts.
+- **Deps (dev):** bump `rector/rector`, `friendsofphp/php-cs-fixer`, `@types/node`, `happy-dom`; refresh Composer lockfiles.
 
+### Notes
+
+- Integrators: include the same `otp-input.js` asset. Custom theme overrides that copied `otp_input_theme.html.twig` should use `<nowo-otp-input>` as the outer host (legacy wrappers still work).
+
+[1.5.0]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.5.0
 
 ## [1.4.4] - 2026-08-24
 

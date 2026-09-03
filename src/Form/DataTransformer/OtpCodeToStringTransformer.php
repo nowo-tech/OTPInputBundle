@@ -19,12 +19,12 @@ use function substr;
  *
  * @implements DataTransformerInterface<string, array<int, string>>
  */
-final class OtpCodeToStringTransformer implements DataTransformerInterface
+final readonly class OtpCodeToStringTransformer implements DataTransformerInterface
 {
     public function __construct(
-        private readonly int $length,
-        private readonly bool $numericOnly = true,
-        private readonly bool $uppercase = true,
+        private int $length,
+        private bool $numericOnly = true,
+        private bool $uppercase = true,
     ) {
     }
 

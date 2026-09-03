@@ -8,7 +8,7 @@ This document describes upgrade notes for `OtpInputBundle`.
 
 
 - [From 1.4.3 to 1.4.4](#from-143-to-144)
-- [Unreleased](#unreleased)
+- [From 1.4.4 to 1.5.0](#from-144-to-150)
 - [To 1.4.2](#to-142)
 - [To 1.4.1](#to-141)
 - [To 1.4.0](#to-140)
@@ -23,26 +23,32 @@ This document describes upgrade notes for `OtpInputBundle`.
 - [1.0.0 (2026-04-01)](#100-2026-04-01)
 - [Breaking changes](#breaking-changes)
 
-## From 1.4.3 to 1.4.4
-
-Review the [CHANGELOG](CHANGELOG.md) entry. PHP **8.2+** may now be required.
-
-```bash
-composer update nowo-tech/otp-input-bundle
-```
-
-## From 1.4.3 to 1.4.4
-
-Review the [CHANGELOG](CHANGELOG.md) entry. PHP **8.2+** may now be required.
-
-```bash
-composer update nowo-tech/otp-input-bundle
-```
-
-
-## Unreleased
+## From 1.4.4 to 1.5.0
 
 The default form theme now wraps the widget in `<nowo-otp-input>`. Include the same `otp-input.js` asset as before. Custom theme overrides that copied `otp_input_theme.html.twig` should switch the outer `<div>` to `<nowo-otp-input>` (legacy `data-nowo-otp-container="1"` wrappers still initialize).
+
+```bash
+composer update nowo-tech/otp-input-bundle
+php bin/console assets:install
+```
+
+## From 1.4.3 to 1.4.4
+
+Review the [CHANGELOG](CHANGELOG.md) entry. PHP **8.2+** may now be required.
+
+```bash
+composer update nowo-tech/otp-input-bundle
+```
+
+## From 1.4.3 to 1.4.4
+
+Review the [CHANGELOG](CHANGELOG.md) entry. PHP **8.2+** may now be required.
+
+```bash
+composer update nowo-tech/otp-input-bundle
+```
+
+
 
 ## To 1.4.3
 

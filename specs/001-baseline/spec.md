@@ -17,6 +17,11 @@
 
 Symfony `OtpType` form field rendering multiple single-character inputs synchronized to one hidden model value, with paste/autofill support, numeric or alphanumeric modes, and multi-framework Twig themes.
 
+
+## Notes / release sync
+
+- **2026-09-03:** Widget host is `<nowo-otp-input>` (custom element, light DOM); legacy `data-nowo-otp-container` still supported.
+
 ---
 
 ## User Scenarios & Testing
