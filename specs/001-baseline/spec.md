@@ -21,6 +21,7 @@ Symfony `OtpType` form field rendering multiple single-character inputs synchron
 ## Notes / release sync
 
 - **2026-09-03:** Widget host is `<nowo-otp-input>` (custom element, light DOM); legacy `data-nowo-otp-container` still supported.
+- **2026-09-24:** Confirmed **100% compatible** with FrankenPHP worker + `FRANKENPHP_RESET_KERNEL=false` (Scenario B). Shared `OtpType` stays stateless (`readonly` defaults); see [`docs/FRANKENPHP-WORKER-AUDIT.md`](../../docs/FRANKENPHP-WORKER-AUDIT.md) and REQ-FP-001.
 
 ---
 

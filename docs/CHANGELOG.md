@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.6.0] - 2026-09-24](#160---2026-09-24)
 - [[1.5.0] - 2026-09-03](#150---2026-09-03)
 - [[1.4.3] - 2026-08-20](#143---2026-08-20)
 - [[1.4.2] - 2026-08-19](#142---2026-08-19)
@@ -42,6 +43,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - [Added](#added-6)
 
 ## [Unreleased]
+
+## [1.6.0] - 2026-09-24
+
+### Added
+
+- FrankenPHP worker audit for sticky Kernel (`FRANKENPHP_RESET_KERNEL=false`): [FRANKENPHP-WORKER-AUDIT.md](FRANKENPHP-WORKER-AUDIT.md) — verdict **100% compatible** (Scenario B).
+- Unit regression `OtpTypeTest::testSharedInstanceDoesNotLeakOptionsAcrossConsecutiveBuilds` (shared form type across consecutive builds without `services_resetter`).
+
+### Changed
+
+- PHPStan includes `ruleset-worker-strict.neon` and `ruleset-hardening.neon` (in addition to classic).
+- README / demo docs: claim **100% compatible** with worker + `reset_kernel: false` (REQ-FP-001).
+- Spec Kit baseline notes and code inventory date synced for FrankenPHP guarantee.
+
+### Notes
+
+- **No API or configuration changes** for integrators. Hosts may run FrankenPHP workers with `FRANKENPHP_RESET_KERNEL=false` without bundle-specific reset hooks.
+
+[1.6.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.6.0
 
 ## [1.5.0] - 2026-09-03
 

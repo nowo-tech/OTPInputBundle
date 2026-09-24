@@ -7,6 +7,7 @@ This document describes upgrade notes for `OtpInputBundle`.
 ## Table of contents
 
 
+- [From 1.5.0 to 1.6.0](#from-150-to-160)
 - [From 1.4.3 to 1.4.4](#from-143-to-144)
 - [From 1.4.4 to 1.5.0](#from-144-to-150)
 - [To 1.4.2](#to-142)
@@ -22,6 +23,16 @@ This document describes upgrade notes for `OtpInputBundle`.
 - [1.0.1 (2026-04-15)](#101-2026-04-15)
 - [1.0.0 (2026-04-01)](#100-2026-04-01)
 - [Breaking changes](#breaking-changes)
+
+## From 1.5.0 to 1.6.0
+
+Confirmed compatible with FrankenPHP **worker** mode when the host runs with **`FRANKENPHP_RESET_KERNEL=false`** (sticky Kernel). See [FRANKENPHP-WORKER-AUDIT.md](FRANKENPHP-WORKER-AUDIT.md).
+
+No application code or `nowo_otp_input` configuration changes are required.
+
+```bash
+composer update nowo-tech/otp-input-bundle
+```
 
 ## From 1.4.4 to 1.5.0
 

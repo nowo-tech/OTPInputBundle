@@ -97,6 +97,41 @@ final class OtpTypeTest extends TestCase
         self::assertSame('nowo_otp_input', $type->getBlockPrefix());
     }
 
+    /**
+     * Simulates FrankenPHP worker with FRANKENPHP_RESET_KERNEL=false: one shared
+     * OtpType instance serves consecutive form builds without services_resetter.
+     */
+    public function testSharedInstanceDoesNotLeakOptionsAcrossConsecutiveBuilds(): void
+    {
+        $type    = new OtpType(6, true, true);
+        $factory = Forms::createFormFactoryBuilder()
+            ->addType($type)
+            ->getFormFactory();
+
+        $view1 = $factory->create(OtpType::class, '', [
+            'length'       => 4,
+            'numeric_only' => false,
+            'uppercase'    => false,
+        ])->createView();
+
+        $view2 = $factory->create(OtpType::class, '')->createView();
+
+        self::assertSame(4, $view1->vars['otp_length']);
+        self::assertFalse($view1->vars['otp_numeric_only']);
+        self::assertFalse($view1->vars['otp_uppercase']);
+        self::assertSame(6, $view2->vars['otp_length']);
+        self::assertTrue($view2->vars['otp_numeric_only']);
+        self::assertTrue($view2->vars['otp_uppercase']);
+
+        $form1 = $factory->create(OtpType::class, '', ['length' => 4, 'numeric_only' => false]);
+        $form1->submit('ab12');
+        self::assertSame('AB12', $form1->getData());
+
+        $form2 = $factory->create(OtpType::class, '');
+        $form2->submit('12-34-56');
+        self::assertSame('123456', $form2->getData());
+    }
+
     public function testBuildViewResetsDigitsWhenValueIsNotArray(): void
     {
         $type                = new OtpType();
