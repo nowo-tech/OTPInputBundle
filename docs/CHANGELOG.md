@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.6.1] - 2026-09-27](#161---2026-09-27)
 - [[1.6.0] - 2026-09-24](#160---2026-09-24)
 - [[1.5.0] - 2026-09-03](#150---2026-09-03)
 - [[1.4.3] - 2026-08-20](#143---2026-08-20)
@@ -43,6 +44,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - [Added](#added-6)
 
 ## [Unreleased]
+
+## [1.6.1] - 2026-09-27
+
+### Added
+
+- **REQ-CS-008:** `igor-php/igor-php` (require-dev only), root `igor.json`, Composer/`Makefile` `igor` target, and `release-check` wiring for FrankenPHP worker-state audit.
+
+[1.6.1]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.6.1
 
 ## [1.6.0] - 2026-09-24
 
