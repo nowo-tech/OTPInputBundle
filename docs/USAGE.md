@@ -1,6 +1,17 @@
 # Usage
 
+## Screenshots
+
+| Overview | Interaction |
+|----------|-------------|
+| ![Empty 6-digit OTP input cells](images/demo/overview.png) | ![OTP cells filled with a verification code](images/demo/interaction.png) |
+
+Regenerate with `make -C demo/symfony8 demo-screenshots` (REQ-DEMO-013).
+
+
 ## Table of contents
+
+- [Screenshots](#screenshots)
 
 - [Form type](#form-type)
 - [Frontend script](#frontend-script)

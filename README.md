@@ -46,7 +46,19 @@ The value received in `otpCode` is a single string like `123456`.
 
 ## Demo preview
 
-![OTP Input Bundle demo](docs/images/otp-demo.png)
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <img src="docs/images/demo/overview.png" alt="Empty 6-digit OTP input cells" />
+      <br /><sub>Empty OTP digit cells</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="docs/images/demo/interaction.png" alt="OTP cells filled with a verification code" />
+      <br /><sub>Code entered across digit cells</sub>
+    </td>
+  </tr>
+</table>
+
 
 ## Documentation
 
