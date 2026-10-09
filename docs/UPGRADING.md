@@ -3,6 +3,16 @@
 
 ## Unreleased
 
+## To 1.6.2
+
+From **1.6.1** — dependency updates and demo Playwright e2e (REQ-DEMO-013).
+
+```bash
+composer update nowo-tech/otp-input-bundle
+```
+
+No breaking changes. No application upgrade steps.
+
 ## To 1.6.1
 
 From **1.6.0** — REQ-CS-008 Igor FrankenPHP worker audit (igor-php require-dev, igor.json, make igor).
@@ -21,6 +31,7 @@ This document describes upgrade notes for `OtpInputBundle`.
 ## Table of contents
 
 
+- [To 1.6.2](#to-162)
 - [From 1.5.0 to 1.6.0](#from-150-to-160)
 - [From 1.4.3 to 1.4.4](#from-143-to-144)
 - [From 1.4.4 to 1.5.0](#from-144-to-150)

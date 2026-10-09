@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.6.2] - 2026-10-09](#162---2026-10-09)
 - [[1.6.1] - 2026-09-27](#161---2026-09-27)
 - [[1.6.0] - 2026-09-24](#160---2026-09-24)
 - [[1.5.0] - 2026-09-03](#150---2026-09-03)
@@ -45,9 +46,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.6.2] - 2026-10-09
+
 ### Added
 
 - **REQ-DEMO-013:** Playwright e2e under `demo/symfony8/e2e/` (`make test-e2e`), `demo-screenshots` target, and README gallery cropped to <nowo-otp-input> (`docs/images/demo/overview.png`, `interaction.png`).
+
+### Changed
+
+- Stopped tracking `.twig-cs-fixer.cache` (now in `.gitignore`).
+
+### Dependencies
+
+- Bundle lock: Symfony 7.4 components -> v7.4.20, `twig/twig` v3.30.0, polyfills v1.43.
+- Dev tooling: `phpstan/phpstan` 2.3.1, `phpstan/phpstan-phpunit` 2.1.1, `phpstan/phpstan-symfony` 2.1.0, `rector/rector` 2.7.0, `phpunit/phpunit` 11.5.57, `friendsofphp/php-cs-fixer` 3.95.27, `igor-php/igor-php` ^0.10 (v0.10.1), `nowo-tech/phpstan-frankenphp` v1.2.3.
+- JS dev: Vite 8.3.2, `@types/node` 26.6.4.
+- Demo (Symfony 8): Symfony v8.1.8, `twig/twig` v3.30.0, `twig/extra-bundle` v3.29.0, `nowo-tech/hot-reload-bundle` v1.5.5, `nowo-tech/twig-inspector-bundle` v1.1.7.
+
+[1.6.2]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.6.2
 
 ## [1.6.1] - 2026-09-27
 
