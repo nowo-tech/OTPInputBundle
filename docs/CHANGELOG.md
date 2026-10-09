@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+  - [Changed](#changed)
 - [[1.6.2] - 2026-10-09](#162---2026-10-09)
 - [[1.6.1] - 2026-09-27](#161---2026-09-27)
 - [[1.6.0] - 2026-09-24](#160---2026-09-24)
@@ -45,6 +46,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - [Added](#added-6)
 
 ## [Unreleased]
+
+### Changed
+
+- Development: `composer.json` pins `config.platform.php` to 8.2.0 so the committed lock stays installable on the minimum PHP; CI overrides the platform per matrix cell.
 
 ## [1.6.2] - 2026-10-09
 
