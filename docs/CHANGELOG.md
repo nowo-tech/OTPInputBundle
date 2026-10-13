@@ -47,6 +47,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- The asset package prepend (`framework.assets.packages.nowo_otp_input`) is now guarded by `class_exists(Symfony\Component\Asset\Package)`, and `symfony/asset` is declared in `require`; previously an app without `symfony/asset` failed to boot.
+- The documented `otp.placeholder` translation is now used: it labels the digit boxes group (`role="group"` + translated `aria-label`, field `translation_domain`) for screen readers.
+
+### Changed
+
+- Development: `vitest` and `@vitest/coverage-v8` upgraded to 4.x.
+
 ## [1.7.0] - 2026-10-13
 
 ### Fixed

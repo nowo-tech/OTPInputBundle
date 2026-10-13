@@ -11,7 +11,7 @@
         {% set type = 'hidden' %}
         {% set value = currentValue %}
         {{ block('form_widget_simple') }}
-        <div class="{{ otp_gap_class }}" data-nowo-otp-render-target="1">
+        <div class="{{ otp_gap_class }}" data-nowo-otp-render-target="1" role="group"{% if translation_domain is not same as(false) %} aria-label="{{ 'otp.placeholder'|trans({}, translation_domain) }}"{% endif %}>
             {% for i in 0..(maxLength - 1) %}
                 {% set digitValue = currentValue is iterable ? (currentValue[i]|default('')) : (currentValue|slice(i, 1)) %}
                 <input

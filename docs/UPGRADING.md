@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- `symfony/asset` is now a required dependency (Composer installs it). No configuration change.
+- The digit boxes wrapper now renders `role="group"` and `aria-label="{{ 'otp.placeholder'|trans }}"` (field `translation_domain`, default `NowoOtpInputBundle`). If you override the `nowo_otp_input_widget` block, add the same attributes for accessibility; override the `otp.placeholder` key to change the text.
+
 ## To 1.7.0
 
 From **1.6.3** — SMS one-time-code autofill fills every box; placeholder rendered; strict form_theme; Symfony >=6.4.

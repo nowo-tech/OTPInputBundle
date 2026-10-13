@@ -42,6 +42,26 @@ final class OtpInputThemeRenderTest extends TestCase
         self::assertSame(4, substr_count($html, 'placeholder="•"'));
     }
 
+    public function testDigitGroupIsLabelledWithTheTranslatedPlaceholder(): void
+    {
+        $html = $this->render([]);
+
+        self::assertMatchesRegularExpression('/<div[^>]*data-nowo-otp-render-target="1"[^>]*role="group"[^>]*aria-label="\[NowoOtpInputBundle\]otp\.placeholder"/', $html);
+    }
+
+    public function testDigitGroupLabelUsesTheFieldTranslationDomain(): void
+    {
+        self::assertStringContainsString('aria-label="[app]otp.placeholder"', $this->render(['translation_domain' => 'app']));
+    }
+
+    public function testDigitGroupHasNoLabelWhenTranslationIsDisabled(): void
+    {
+        $html = $this->render(['translation_domain' => false]);
+
+        self::assertStringContainsString('role="group"', $html);
+        self::assertStringNotContainsString('otp.placeholder', $html);
+    }
+
     public function testNoPlaceholderAttributeByDefault(): void
     {
         self::assertStringNotContainsString('placeholder=', $this->render([]));
@@ -62,7 +82,7 @@ final class OtpInputThemeRenderTest extends TestCase
             FormRenderer::class => static fn (): FormRenderer => new FormRenderer($engine),
         ]));
         $twig->addExtension(new FormExtension());
-        $twig->addFilter(new TwigFilter('trans', static fn (mixed $message): mixed => $message));
+        $twig->addFilter(new TwigFilter('trans', static fn (mixed $message, array $parameters = [], ?string $domain = null): mixed => $domain === null ? $message : '[' . $domain . ']' . $message));
 
         $form = Forms::createFormFactoryBuilder()
             ->addType(new OtpType())

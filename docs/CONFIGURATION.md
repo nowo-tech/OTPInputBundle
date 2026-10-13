@@ -36,7 +36,7 @@ Supported values (any other value is rejected when the container is compiled):
 
 ## Translations
 
-The bundle ships placeholder strings under `src/Resources/translations/` for:
+The bundle ships the `otp.placeholder` string (used as the `aria-label` of the digit boxes group, translated with the field `translation_domain`) under `src/Resources/translations/` for:
 
 - `en`, `es`, `de`, `fr`, `it`, `nl`, `pt`
 

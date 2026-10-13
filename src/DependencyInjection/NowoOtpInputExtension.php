@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nowo\OtpInputBundle\DependencyInjection;
 
+use Symfony\Component\Asset\Package;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -51,7 +52,8 @@ final class NowoOtpInputExtension extends Extension implements PrependExtensionI
             ]);
         }
 
-        if ($container->hasExtension('framework')) {
+        // framework.assets is only valid when symfony/asset is installed.
+        if ($container->hasExtension('framework') && class_exists(Package::class)) {
             $container->prependExtensionConfig('framework', [
                 'assets' => [
                     'packages' => [
