@@ -1,5 +1,34 @@
 # Upgrading
 
+## Table of contents
+
+- [Unreleased](#unreleased)
+- [To 1.8.0](#to-180)
+- [To 1.7.0](#to-170)
+- [To 1.6.3](#to-163)
+- [To 1.6.2](#to-162)
+- [To 1.6.1](#to-161)
+- [From 1.5.0 to 1.6.0](#from-150-to-160)
+- [From 1.4.4 to 1.5.0](#from-144-to-150)
+- [From 1.4.3 to 1.4.4](#from-143-to-144)
+- [From 1.4.3 to 1.4.4](#from-143-to-144-1)
+- [To 1.4.3](#to-143)
+- [To 1.4.2](#to-142)
+- [To 1.4.1](#to-141)
+- [To 1.4.0](#to-140)
+  - [Twig Extra Bundle (REQ-TWIG-004)](#twig-extra-bundle-req-twig-004)
+  - [Twig-CS-Fixer (maintainers)](#twig-cs-fixer-maintainers)
+- [Current compatibility baseline](#current-compatibility-baseline)
+- [Public API reminders](#public-api-reminders)
+- [1.3.0 (2026-07-29)](#130-2026-07-29)
+- [1.2.0 (2026-07-16)](#120-2026-07-16)
+- [1.1.1 (2026-07-16)](#111-2026-07-16)
+- [1.1.0 (2026-07-09)](#110-2026-07-09)
+- [1.0.2 (2026-07-02)](#102-2026-07-02)
+- [1.0.1 (2026-04-15)](#101-2026-04-15)
+- [1.0.0 (2026-04-01)](#100-2026-04-01)
+- [Breaking changes](#breaking-changes)
+
 ## Unreleased
 
 ## To 1.8.0
@@ -57,29 +86,6 @@ php bin/console cache:clear
 - No application upgrade steps for require-dev Igor tooling (REQ-CS-008). Consumers do not pull `igor-php/igor-php` transitively.
 
 This document describes upgrade notes for `OtpInputBundle`.
-
-## Table of contents
-
-- [To 1.8.0](#to-180)
-- [To 1.7.0](#to-170)
-- [To 1.6.3](#to-163)
-- [To 1.6.2](#to-162)
-- [From 1.5.0 to 1.6.0](#from-150-to-160)
-- [From 1.4.3 to 1.4.4](#from-143-to-144)
-- [From 1.4.4 to 1.5.0](#from-144-to-150)
-- [To 1.4.2](#to-142)
-- [To 1.4.1](#to-141)
-- [To 1.4.0](#to-140)
-- [Current compatibility baseline](#current-compatibility-baseline)
-- [Public API reminders](#public-api-reminders)
-- [1.3.0 (2026-07-29)](#130-2026-07-29)
-- [1.2.0 (2026-07-16)](#120-2026-07-16)
-- [1.1.1 (2026-07-16)](#111-2026-07-16)
-- [1.1.0 (2026-07-09)](#110-2026-07-09)
-- [1.0.2 (2026-07-02)](#102-2026-07-02)
-- [1.0.1 (2026-04-15)](#101-2026-04-15)
-- [1.0.0 (2026-04-01)](#100-2026-04-01)
-- [Breaking changes](#breaking-changes)
 
 ## From 1.5.0 to 1.6.0
 
