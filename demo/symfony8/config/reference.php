@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 // This file is auto-generated and is for apps only. Bundles SHOULD NOT rely on its content.
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
@@ -755,7 +753,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     length?: int|Param, // Default: 6
  *     numeric_only?: bool|Param, // Default: true
  *     uppercase?: bool|Param, // Default: true
- *     form_theme?: scalar|Param|null, // Default: "form_div_layout.html.twig"
+ *     form_theme?: "form_div_layout.html.twig"|"form_table_layout.html.twig"|"bootstrap_5_layout.html.twig"|"bootstrap_5_horizontal_layout.html.twig"|"bootstrap_4_layout.html.twig"|"bootstrap_4_horizontal_layout.html.twig"|"bootstrap_3_layout.html.twig"|"bootstrap_3_horizontal_layout.html.twig"|"foundation_5_layout.html.twig"|"foundation_6_layout.html.twig"|"tailwind_2_layout.html.twig"|Param, // Default: "form_div_layout.html.twig"
  * }
  * @psalm-type NowoHotReloadConfig = array{
  *     enabled?: bool|Param, // Master switch. When false, nothing is injected even if FRANKENPHP_HOT_RELOAD is set. // Default: true
