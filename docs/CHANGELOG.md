@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - [[Unreleased]](#unreleased)
   - [Changed](#changed)
+- [[1.7.0] - 2026-10-13](#170---2026-10-13)
 - [[1.6.3] - 2026-10-13](#163---2026-10-13)
 - [[1.6.2] - 2026-10-09](#162---2026-10-09)
 - [[1.6.1] - 2026-09-27](#161---2026-09-27)
@@ -46,6 +47,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-10-13
+
 ### Fixed
 
 - SMS / one-time-code autofill now fills the whole code. Only the first box carries `autocomplete="one-time-code"` (without `maxlength`), the other boxes use `autocomplete="off"` + `maxlength="1"`, and multi-character input on any box (autofill, IME, drag & drop) is spread across the boxes like a paste. Previously every box advertised `one-time-code` with `maxlength="1"`, so autofill only kept the first digit.
@@ -55,6 +58,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - `form_theme` is now an enum: unknown values are rejected at config time (they used to fall back silently to `form_div_layout.html.twig`).
 - Minimum Symfony version raised from 6.0 to **6.4** (`^6.4 || ^7.0 || ^8.0`); CI now also tests Symfony 6.4.
+
+[1.7.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.7.0
 
 ## [1.6.3] - 2026-10-13
 

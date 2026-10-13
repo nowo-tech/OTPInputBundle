@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+## To 1.7.0
+
+From **1.6.3** — SMS one-time-code autofill fills every box; placeholder rendered; strict form_theme; Symfony >=6.4.
+
+```bash
+composer update nowo-tech/otp-input-bundle
+php bin/console assets:install
+```
+
+- Custom themes overriding `nowo_otp_input_widget` should copy the first-box pattern (`autocomplete="one-time-code"` without `maxlength` on the first input only).
+- Unknown `form_theme` values are rejected; Symfony 6.4 is the minimum.
+
 ## To 1.6.3
 
 From **1.6.2** — dependency refresh and repository maintenance.
@@ -37,6 +49,7 @@ This document describes upgrade notes for `OtpInputBundle`.
 
 ## Table of contents
 
+- [To 1.7.0](#to-170)
 - [To 1.6.3](#to-163)
 - [To 1.6.2](#to-162)
 - [From 1.5.0 to 1.6.0](#from-150-to-160)
