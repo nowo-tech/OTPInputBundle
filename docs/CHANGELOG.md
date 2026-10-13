@@ -4,12 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-
-
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
   - [Changed](#changed)
+- [[1.6.3] - 2026-10-13](#163---2026-10-13)
 - [[1.6.2] - 2026-10-09](#162---2026-10-09)
 - [[1.6.1] - 2026-09-27](#161---2026-09-27)
 - [[1.6.0] - 2026-09-24](#160---2026-09-24)
@@ -47,9 +46,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.6.3] - 2026-10-13
+
 ### Changed
 
 - Development: `composer.json` pins `config.platform.php` to 8.2.0 so the committed lock stays installable on the minimum PHP; CI overrides the platform per matrix cell.
+
+### Dependencies
+
+- `happy-dom` 20.14.5 → 20.14.6 (frontend tooling; #64).
+- `vite` 8.3.2 → 8.3.4 (frontend tooling; #65).
+- `@types/node` 26.6.4 → 26.6.5 (frontend tooling; #66).
+
+[1.6.3]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.6.3
 
 ## [1.6.2] - 2026-10-09
 

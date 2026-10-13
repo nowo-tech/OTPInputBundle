@@ -1,7 +1,16 @@
 # Upgrading
 
-
 ## Unreleased
+
+## To 1.6.3
+
+From **1.6.2** — dependency refresh and repository maintenance.
+
+```bash
+composer update nowo-tech/otp-input-bundle
+```
+
+- No breaking changes. No application upgrade steps.
 
 ## To 1.6.2
 
@@ -26,11 +35,9 @@ php bin/console cache:clear
 
 This document describes upgrade notes for `OtpInputBundle`.
 
-
-
 ## Table of contents
 
-
+- [To 1.6.3](#to-163)
 - [To 1.6.2](#to-162)
 - [From 1.5.0 to 1.6.0](#from-150-to-160)
 - [From 1.4.3 to 1.4.4](#from-143-to-144)
@@ -84,8 +91,6 @@ Review the [CHANGELOG](CHANGELOG.md) entry. PHP **8.2+** may now be required.
 composer update nowo-tech/otp-input-bundle
 ```
 
-
-
 ## To 1.4.3
 
 From **1.4.2** — No application upgrade steps (dev/demo frontend Dependabot bumps only).
@@ -132,7 +137,6 @@ and enable `Twig\Extra\TwigExtraBundle\TwigExtraBundle`. Flex recipes usually re
 ### Twig-CS-Fixer (maintainers)
 
 Package maintainers: `composer twig:lint` / `composer twig:fix` use `.twig-cs-fixer.php` over `src/` (and `templates/` when present).
-
 
 ## Current compatibility baseline
 
