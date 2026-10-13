@@ -4,7 +4,7 @@
 
 | Overview | Interaction |
 |----------|-------------|
-| ![Empty 6-digit OTP input cells](images/demo/overview.png) | ![OTP cells filled with a verification code](images/demo/interaction.png) |
+| ![Empty 6-digit OTP input cells](images/demo/overview.webp) | ![OTP cells filled with a verification code](images/demo/interaction.webp) |
 
 Regenerate with `make -C demo/symfony8 demo-screenshots` (REQ-DEMO-013).
 
