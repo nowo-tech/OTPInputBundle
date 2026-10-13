@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - [[Unreleased]](#unreleased)
   - [Changed](#changed)
+- [[1.8.0] - 2026-10-13](#180---2026-10-13)
 - [[1.7.0] - 2026-10-13](#170---2026-10-13)
 - [[1.6.3] - 2026-10-13](#163---2026-10-13)
 - [[1.6.2] - 2026-10-09](#162---2026-10-09)
@@ -47,6 +48,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-10-13
+
 ### Fixed
 
 - The asset package prepend (`framework.assets.packages.nowo_otp_input`) is now guarded by `class_exists(Symfony\Component\Asset\Package)`, and `symfony/asset` is declared in `require`; previously an app without `symfony/asset` failed to boot.
@@ -55,6 +58,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 - Development: `vitest` and `@vitest/coverage-v8` upgraded to 4.x.
+
+[1.8.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.8.0
 
 ## [1.7.0] - 2026-10-13
 
