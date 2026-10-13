@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Nowo\OtpInputBundle\Tests\Unit\DependencyInjection;
 
+use Nowo\OtpInputBundle\DependencyInjection\Configuration;
 use Nowo\OtpInputBundle\DependencyInjection\NowoOtpInputExtension;
 use PHPUnit\Framework\TestCase;
+use ReflectionClassConstant;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 
@@ -86,9 +89,16 @@ final class NowoOtpInputExtensionTest extends TestCase
         $container2->prependExtensionConfig('nowo_otp_input', [
             'form_theme' => 'unknown_theme.html.twig',
         ]);
+        $this->expectException(InvalidConfigurationException::class);
         $extension->prepend($container2);
-        $twigConfigs2 = $container2->getExtensionConfig('twig');
-        self::assertSame('@NowoOtpInputBundle/Form/otp_input_theme.html.twig', $twigConfigs2[0]['form_themes'][0]);
+    }
+
+    public function testEveryConfigurableFormThemeIsMapped(): void
+    {
+        $map = (new ReflectionClassConstant(NowoOtpInputExtension::class, 'FORM_THEME_MAP'))->getValue();
+
+        self::assertIsArray($map);
+        self::assertSame(Configuration::FORM_THEMES, array_keys($map));
     }
 
     public function testPrependAddsNamedAssetPackageWhenFrameworkExtensionPresent(): void

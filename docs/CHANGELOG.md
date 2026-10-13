@@ -46,6 +46,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- SMS / one-time-code autofill now fills the whole code. Only the first box carries `autocomplete="one-time-code"` (without `maxlength`), the other boxes use `autocomplete="off"` + `maxlength="1"`, and multi-character input on any box (autofill, IME, drag & drop) is spread across the boxes like a paste. Previously every box advertised `one-time-code` with `maxlength="1"`, so autofill only kept the first digit.
+- The `placeholder_char` option is now rendered as the `placeholder` attribute of every box (it was exposed to Twig but never used).
+
+### Changed
+
+- `form_theme` is now an enum: unknown values are rejected at config time (they used to fall back silently to `form_div_layout.html.twig`).
+- Minimum Symfony version raised from 6.0 to **6.4** (`^6.4 || ^7.0 || ^8.0`); CI now also tests Symfony 6.4.
+
 ## [1.6.3] - 2026-10-13
 
 ### Changed

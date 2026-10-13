@@ -20,7 +20,7 @@ nowo_otp_input:
 
 ## form_theme
 
-Supported values:
+Supported values (any other value is rejected when the container is compiled):
 
 - `form_div_layout.html.twig`
 - `form_table_layout.html.twig`

@@ -77,8 +77,12 @@ export function initOtpContainer(container: OtpContainer): void {
   const numericOnly = toBool(hidden.dataset.nowoOtpInputNumericOnlyValue);
   const uppercase = toBool(hidden.dataset.nowoOtpInputUppercaseValue);
 
+  // Last known value of every box, so multi-character `input` events can tell "typed over" from autofill.
+  let lastValues = digits.map((d) => d.value);
+
   const updateHidden = (): void => {
-    hidden.value = digits.map((d) => d.value).join('');
+    lastValues = digits.map((d) => d.value);
+    hidden.value = lastValues.join('');
     hidden.dispatchEvent(new Event('input', { bubbles: true }));
     hidden.dispatchEvent(new Event('change', { bubbles: true }));
   };
@@ -112,7 +116,24 @@ export function initOtpContainer(container: OtpContainer): void {
 
   digits.forEach((digit, index) => {
     digit.addEventListener('input', () => {
-      digit.value = sanitizeChar(digit.value, numericOnly, uppercase);
+      const raw = digit.value.replace(/\s+/g, '');
+      const chars = raw
+        .split('')
+        .map((c) => sanitizeChar(c, numericOnly, uppercase))
+        .filter((c) => c !== '');
+
+      if (chars.length > 1) {
+        if (chars.length === 2 && chars[0] === lastValues[index]) {
+          // Typed one character after the existing one: keep the new character only.
+          digit.value = chars[1];
+        } else {
+          // SMS one-time-code autofill / IME / drag-drop: spread the whole code across the boxes.
+          applyPastedCode(raw, index);
+          return;
+        }
+      } else {
+        digit.value = chars[0] ?? '';
+      }
       updateHidden();
       if (digit.value !== '') {
         moveFocus(index + 1);

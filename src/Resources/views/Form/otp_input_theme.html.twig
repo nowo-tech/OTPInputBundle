@@ -17,8 +17,8 @@
                 <input
                     type="text"
                     inputmode="{{ otp_numeric_only ? 'numeric' : 'text' }}"
-                    maxlength="1"
-                    autocomplete="one-time-code"
+                    {% if i == 0 %}autocomplete="one-time-code"{% else %}autocomplete="off" maxlength="1"{% endif %}
+                    {% if otp_placeholder_char is not empty %}placeholder="{{ otp_placeholder_char }}"{% endif %}
                     class="{{ otp_input_class }}"
                     data-nowo-otp-digit="{{ i }}"
                     value="{{ digitValue }}"

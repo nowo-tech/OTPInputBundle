@@ -38,6 +38,10 @@ $builder->add('otpCode', OtpType::class, [
 
 The field value is a single string, for example `123456`.
 
+`placeholder_char` (default `''`) is rendered as the `placeholder` attribute of every box.
+
+Autofill: only the first box has `autocomplete="one-time-code"` (and no `maxlength`), so iOS/Android SMS code suggestions fill the first box with the whole code; the script then spreads it across all boxes. Custom themes that override `nowo_otp_input_widget` should keep this pattern.
+
 ## Frontend script
 
 Include the built OTP script in your layout (after `assets:install`):

@@ -80,6 +80,70 @@ describe('otp-input entrypoint', () => {
     expect(document.activeElement).toBe(digits[0]);
   });
 
+  it('spreads an SMS one-time-code autofill written into the first box across all boxes', async () => {
+    document.body.innerHTML = `
+      <div data-nowo-otp-container="1">
+        <input data-controller="nowo-otp-input"
+          data-nowo-otp-input-numeric-only-value="1"
+          data-nowo-otp-input-uppercase-value="1" />
+        <input data-nowo-otp-digit="0" autocomplete="one-time-code" />
+        <input data-nowo-otp-digit="1" maxlength="1" />
+        <input data-nowo-otp-digit="2" maxlength="1" />
+        <input data-nowo-otp-digit="3" maxlength="1" />
+        <input data-nowo-otp-digit="4" maxlength="1" />
+        <input data-nowo-otp-digit="5" maxlength="1" />
+      </div>
+    `;
+
+    await import('./otp-input');
+
+    const hidden = document.querySelector('input[data-controller*="nowo-otp-input"]') as HTMLInputElement;
+    const digits = Array.from(document.querySelectorAll<HTMLInputElement>('input[data-nowo-otp-digit]'));
+
+    // iOS / Android autofill sets the whole code on the one-time-code input and fires a single input event.
+    digits[0].value = '123 456';
+    digits[0].dispatchEvent(new Event('input', { bubbles: true }));
+
+    expect(digits.map((d) => d.value)).toEqual(['1', '2', '3', '4', '5', '6']);
+    expect(hidden.value).toBe('123456');
+    expect(document.activeElement).toBe(digits[5]);
+  });
+
+  it('keeps the newly typed character when typing after an existing one', async () => {
+    document.body.innerHTML = `
+      <div data-nowo-otp-container="1">
+        <input data-controller="nowo-otp-input"
+          data-nowo-otp-input-numeric-only-value="1"
+          data-nowo-otp-input-uppercase-value="1" />
+        <input data-nowo-otp-digit="0" value="1" />
+        <input data-nowo-otp-digit="1" value="2" />
+        <input data-nowo-otp-digit="2" value="3" />
+      </div>
+    `;
+
+    await import('./otp-input');
+
+    const hidden = document.querySelector('input[data-controller*="nowo-otp-input"]') as HTMLInputElement;
+    const digits = Array.from(document.querySelectorAll<HTMLInputElement>('input[data-nowo-otp-digit]'));
+
+    digits[0].value = '17';
+    digits[0].dispatchEvent(new Event('input', { bubbles: true }));
+
+    expect(digits.map((d) => d.value)).toEqual(['7', '2', '3']);
+    expect(hidden.value).toBe('723');
+    expect(document.activeElement).toBe(digits[1]);
+
+    // Two new characters that do not extend the previous value are treated as a code fragment.
+    digits[1].value = '89';
+    digits[1].dispatchEvent(new Event('input', { bubbles: true }));
+    expect(digits.map((d) => d.value)).toEqual(['7', '8', '9']);
+
+    // Clearing a box keeps working.
+    digits[2].value = '';
+    digits[2].dispatchEvent(new Event('input', { bubbles: true }));
+    expect(hidden.value).toBe('78');
+  });
+
   it('handles paste on digit, container and hidden input', async () => {
     document.body.innerHTML = `
       <div data-nowo-otp-container="1" id="otp-wrap">

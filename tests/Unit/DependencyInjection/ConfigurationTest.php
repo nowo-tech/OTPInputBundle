@@ -6,6 +6,7 @@ namespace Nowo\OtpInputBundle\Tests\Unit\DependencyInjection;
 
 use Nowo\OtpInputBundle\DependencyInjection\Configuration;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\Definition\Processor;
 
 /**
@@ -45,5 +46,13 @@ final class ConfigurationTest extends TestCase
         self::assertFalse($config['numeric_only']);
         self::assertFalse($config['uppercase']);
         self::assertSame('bootstrap_5_layout.html.twig', $config['form_theme']);
+    }
+
+    public function testRejectsUnknownFormTheme(): void
+    {
+        $this->expectException(InvalidConfigurationException::class);
+        (new Processor())->processConfiguration(new Configuration(), [[
+            'form_theme' => 'my_theme.html.twig',
+        ]]);
     }
 }
