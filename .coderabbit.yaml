@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 #
-# CodeRabbit configuration for nowo-tech/OtpInputBundle.
-# Requires the CodeRabbit GitHub App installed on nowo-tech/OtpInputBundle.
+# CodeRabbit configuration for nowo-tech/OTPInputBundle.
+# Requires the CodeRabbit GitHub App installed on nowo-tech/OTPInputBundle.
 # Manual review: comment `@coderabbitai review` on a pull request.
 
 language: en-US

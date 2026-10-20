@@ -2,7 +2,7 @@
 
 **Baseline spec**: [`spec.md`](spec.md)  
 **Package**: `nowo-tech/otp-input-bundle`  
-**Last audited**: 2026-09-24
+**Last audited**: 2026-10-20
 
 This file proves that **every source artifact** under `src/` is referenced by the baseline specification. Co-located Vitest files enforce frontend contracts; PHPUnit covers PHP under `tests/`. FrankenPHP sticky-kernel guarantee: [`docs/FRANKENPHP-WORKER-AUDIT.md`](../../docs/FRANKENPHP-WORKER-AUDIT.md) (REQ-FP-001).
 
@@ -21,7 +21,9 @@ This file proves that **every source artifact** under `src/` is referenced by th
 
 | Source file | Spec section | Requirement IDs |
 | --- | --- | --- |
-| `otp-input.ts` | Multi-digit widget behavior | FR-UI-001 |
+| `otp-input.ts` | Standalone IIFE entry (multi-digit widget init) | FR-UI-001, FR-LEGACY-001 |
+| `otp-input-lib.ts` | Shared OTP library: digit inputs ↔ hidden field sync, paste, sanitizing, events | FR-UI-001 |
+| `nowo-otp-input-element.ts` | Autonomous custom element `<nowo-otp-input>` used by the default theme | FR-UI-003 |
 | `logger.ts` | Debug logging | FR-UI-002 |
 
 ## Vitest co-located (`src/Resources/assets/src/`)
@@ -29,6 +31,8 @@ This file proves that **every source artifact** under `src/` is referenced by th
 | Source file | Spec section | Requirement IDs |
 | --- | --- | --- |
 | `otp-input.test.ts` | Widget contract tests | FR-UI-001 |
+| `otp-input-lib.test.ts` | Library contract tests | FR-UI-001 |
+| `nowo-otp-input-element.test.ts` | Custom element tests | FR-UI-003 |
 
 ## Legacy JavaScript (`src/Resources/public/`)
 
@@ -75,10 +79,12 @@ This file proves that **every source artifact** under `src/` is referenced by th
 | Category | Files | Mapped |
 | --- | ---: | ---: |
 | PHP classes | 6 | 6 |
-| TypeScript production | 2 | 2 |
-| Vitest co-located | 1 | 1 |
-| Legacy JS | 1 | 1 |
+| TypeScript production | 4 | 4 |
+| Vitest co-located | 3 | 3 |
+| Legacy JavaScript | 1 | 1 |
 | Symfony config | 1 | 1 |
-| Twig themes | 11 | 11 |
+| Twig form themes | 11 | 11 |
 | Translations | 7 | 7 |
-| **Total sources under `src/`** | **29** | **29** |
+| **Total production sources** | **33** | **33** |
+
+Audit command (production count): `git ls-files src | wc -l` → **33** (2026-10-20; co-located Vitest files are counted in their own category).

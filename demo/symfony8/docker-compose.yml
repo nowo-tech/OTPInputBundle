@@ -1,4 +1,4 @@
-name: otp-input-demo-symfony8
+name: otp-input-bundle-demo-symfony-8
 
 services:
   php:

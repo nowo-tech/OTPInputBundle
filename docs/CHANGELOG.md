@@ -29,6 +29,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Documentation: wave-1 REQ compliance — GitHub links use the real repository slug `OTPInputBundle`, README GitHub stars + Coverage badges and canonical FrankenPHP claim, README documentation list order, canonical issue and pull request templates, CONTRIBUTING Cursor Agent settings (REQ-IDE-006), tables of contents, DEMO-FRANKENPHP development/production/troubleshooting sections, commented demo `.env.example`, demo compose project name `otp-input-bundle-demo-symfony-8`, Spec Kit inventory refresh (33/33).
+
 ## [1.8.0] - 2026-10-13
 
 ### Fixed
@@ -40,7 +44,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Development: `vitest` and `@vitest/coverage-v8` upgraded to 4.x.
 
-[1.8.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.8.0
+[1.8.0]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.8.0
 
 ## [1.7.0] - 2026-10-13
 
@@ -54,7 +58,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `form_theme` is now an enum: unknown values are rejected at config time (they used to fall back silently to `form_div_layout.html.twig`).
 - Minimum Symfony version raised from 6.0 to **6.4** (`^6.4 || ^7.0 || ^8.0`); CI now also tests Symfony 6.4.
 
-[1.7.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.7.0
+[1.7.0]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.7.0
 
 ## [1.6.3] - 2026-10-13
 
@@ -68,7 +72,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - `vite` 8.3.2 → 8.3.4 (frontend tooling; #65).
 - `@types/node` 26.6.4 → 26.6.5 (frontend tooling; #66).
 
-[1.6.3]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.6.3
+[1.6.3]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.6.3
 
 ## [1.6.2] - 2026-10-09
 
@@ -87,7 +91,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - JS dev: Vite 8.3.2, `@types/node` 26.6.4.
 - Demo (Symfony 8): Symfony v8.1.8, `twig/twig` v3.30.0, `twig/extra-bundle` v3.29.0, `nowo-tech/hot-reload-bundle` v1.5.5, `nowo-tech/twig-inspector-bundle` v1.1.7.
 
-[1.6.2]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.6.2
+[1.6.2]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.6.2
 
 ## [1.6.1] - 2026-09-27
 
@@ -95,7 +99,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - **REQ-CS-008:** `igor-php/igor-php` (require-dev only), root `igor.json`, Composer/`Makefile` `igor` target, and `release-check` wiring for FrankenPHP worker-state audit.
 
-[1.6.1]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.6.1
+[1.6.1]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.6.1
 
 ## [1.6.0] - 2026-09-24
 
@@ -114,7 +118,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - **No API or configuration changes** for integrators. Hosts may run FrankenPHP workers with `FRANKENPHP_RESET_KERNEL=false` without bundle-specific reset hooks.
 
-[1.6.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.6.0
+[1.6.0]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.6.0
 
 ## [1.5.0] - 2026-09-03
 
@@ -175,7 +179,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Removed
 
-[1.4.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.4.0
+[1.4.0]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.4.0
 
 ## [1.3.0] - 2026-07-29
 
@@ -292,10 +296,10 @@ First stable release of `OtpInputBundle`.
 - Development Docker image: `git config safe.directory /app` so Composer does not hit “dubious ownership” on the mounted repo.
 - README demo screenshot (`docs/images/otp-demo.png`).
 
-[1.3.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.3.0
-[1.2.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.2.0
-[1.1.1]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.1.1
-[1.1.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.1.0
-[1.0.2]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.2
-[1.0.1]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.1
-[1.0.0]: https://github.com/nowo-tech/OtpInputBundle/releases/tag/v1.0.0
+[1.3.0]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.3.0
+[1.2.0]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.2.0
+[1.1.1]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.1.1
+[1.1.0]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.1.0
+[1.0.2]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.0.2
+[1.0.1]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.0.1
+[1.0.0]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.0.0

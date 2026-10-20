@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 <!--
-- Please do not report an issue for a version of `otp-input-bundle` that is no longer supported. Currently supported versions are listed here: https://github.com/nowo-tech/OtpInputBundle#version-information
+- Please do not report an issue for a version of `otp-input-bundle` that is no longer supported. Currently supported versions are listed here: https://github.com/nowo-tech/OTPInputBundle#version-information
 - Please fill in this template according to your issue.
 - Please keep the table shown below at the top of your issue.
 - You can retrieve `otp-input-bundle` version by running `composer info | grep "otp-input-bundle"`.
@@ -19,7 +19,7 @@ assignees: ''
 
 | Q                           | A
 | ----------------------------| -----------------------
-| `OtpInputBundle` version    | x.y.z
+| `OTPInputBundle` version        | x.y.z
 | PHP version                 | x.y.z
 | Database                    | MySQL / PostgreSQL / SQLite / Other
 

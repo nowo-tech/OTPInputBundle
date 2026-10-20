@@ -104,6 +104,7 @@ As an integrator, I pick a Twig form theme matching Bootstrap, Foundation, Tailw
 
 - **FR-UI-001**: `otp-input.ts` MUST initialize per container: sync digit inputs with hidden field, handle input/backspace/paste, sanitize chars, dispatch bubbling events, and support autofocus.
 - **FR-UI-002**: `logger.ts` MUST provide namespaced debug logger with build-time metadata.
+- **FR-UI-003**: `nowo-otp-input-element.ts` MUST register the autonomous custom element `<nowo-otp-input>` (once) that initializes the shared library from `otp-input-lib.ts` when connected.
 - **FR-LEGACY-001**: Committed `otp-input.js` MUST remain loadable without Vite build for downstream consumers.
 
 ### Twig themes
@@ -122,7 +123,7 @@ As an integrator, I pick a Twig form theme matching Bootstrap, Foundation, Tailw
 
 ## Success Criteria
 
-- **SC-001**: **29/29** files under `src/` mapped in [`code-inventory.md`](code-inventory.md).
+- **SC-001**: **33/33** files under `src/` mapped in [`code-inventory.md`](code-inventory.md) (audited 2026-10-20; `git ls-files src | wc -l`).
 - **SC-002**: Config keys match `Configuration.php` and `docs/CONFIGURATION.md`.
 - **SC-003**: PHPUnit + PHPStan + Vitest pass (`composer qa`, `make test-ts`).
 - **SC-004**: Pasted codes fill all boxes and produce correct hidden value in browser tests.
