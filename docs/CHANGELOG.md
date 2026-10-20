@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.8.1] - 2026-10-20](#181---2026-10-20)
 - [[1.8.0] - 2026-10-13](#180---2026-10-13)
 - [[1.7.0] - 2026-10-13](#170---2026-10-13)
 - [[1.6.3] - 2026-10-13](#163---2026-10-13)
@@ -29,11 +30,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.8.1] - 2026-10-20
+
+Dependency refresh (bundle and demos), php-cs-fixer ParallelConfig(2). See [UPGRADING](UPGRADING.md#to-181).
+
 ### Changed
 
 - Dependencies refreshed (Composer and pnpm/npm lock files of the bundle and its demos, campaign 2026-10-19); shipped assets rebuilt.
 - `.php-cs-fixer.dist.php`: `new ParallelConfig(2)` (REQ-CS-001).
 - Documentation: wave-1 REQ compliance — GitHub links use the real repository slug `OTPInputBundle`, README GitHub stars + Coverage badges and canonical FrankenPHP claim, README documentation list order, canonical issue and pull request templates, CONTRIBUTING Cursor Agent settings (REQ-IDE-006), tables of contents, DEMO-FRANKENPHP development/production/troubleshooting sections, commented demo `.env.example`, demo compose project name `otp-input-bundle-demo-symfony-8`, Spec Kit inventory refresh (33/33).
+
+[1.8.1]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.8.1
 
 ## [1.8.0] - 2026-10-13
 
