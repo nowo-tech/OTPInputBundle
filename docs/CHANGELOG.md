@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.8.2] - 2026-10-21](#182---2026-10-21)
 - [[1.8.1] - 2026-10-20](#181---2026-10-20)
 - [[1.8.0] - 2026-10-13](#180---2026-10-13)
 - [[1.7.0] - 2026-10-13](#170---2026-10-13)
@@ -30,6 +31,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.8.2] - 2026-10-21
+
+Makefile help and release-check chain, TypeScript coverage gate, demo smoke HTTP 200, CoversClass attributes. See [UPGRADING](UPGRADING.md#to-182).
+
 ### Changed
 
 - Makefile: new `help` target (default goal) in the canonical block order (REQ-MAKE-001); `release-check` runs sequentially from `ensure-up` and adds `check-no-raw-html-form` and `validate-translations` (REQ-MAKE-002).
@@ -46,6 +51,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Demo `make up` installs Composer dependencies in a one-off container before starting FrankenPHP, so a fresh checkout no longer crash-loops the worker on a missing `vendor/` (the smoke failed with HTTP 000).
 - `pnpm install --frozen-lockfile` works again: the `vite` override is scoped to `vite@<6.4.3`.
 - `.scripts/check-no-cursor-coauthor.sh` also runs inside git worktrees (`.git` file instead of directory).
+
+[1.8.2]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.8.2
 
 ## [1.8.1] - 2026-10-20
 
