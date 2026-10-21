@@ -7,13 +7,12 @@ namespace Nowo\OtpInputBundle\Tests\Unit;
 use Nowo\OtpInputBundle\DependencyInjection\Compiler\TwigPathsPass;
 use Nowo\OtpInputBundle\Form\DataTransformer\OtpCodeToStringTransformer;
 use Nowo\OtpInputBundle\NowoOtpInputBundle;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-/**
- * @covers \Nowo\OtpInputBundle\NowoOtpInputBundle
- * @covers \Nowo\OtpInputBundle\Form\DataTransformer\OtpCodeToStringTransformer
- */
+#[CoversClass(NowoOtpInputBundle::class)]
+#[CoversClass(OtpCodeToStringTransformer::class)]
 final class NowoOtpInputBundleTest extends TestCase
 {
     public function testBundleRegistersTwigCompilerPass(): void

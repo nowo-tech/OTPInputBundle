@@ -6,15 +6,14 @@ namespace Nowo\OtpInputBundle\Tests\Unit\DependencyInjection;
 
 use Nowo\OtpInputBundle\DependencyInjection\Configuration;
 use Nowo\OtpInputBundle\DependencyInjection\NowoOtpInputExtension;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use ReflectionClassConstant;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 
-/**
- * @covers \Nowo\OtpInputBundle\DependencyInjection\NowoOtpInputExtension
- */
+#[CoversClass(NowoOtpInputExtension::class)]
 final class NowoOtpInputExtensionTest extends TestCase
 {
     public function testGetAlias(): void

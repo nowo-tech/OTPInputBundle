@@ -15,6 +15,13 @@ export default defineConfig({
         'src/Resources/assets/src/nowo-otp-input-element.ts',
       ],
       exclude: ['**/*.test.ts', '**/node_modules/**'],
+      // REQ-TEST-003: TS coverage gate (>= 90%); `vitest run --coverage` exits non-zero below it.
+      thresholds: {
+        lines: 90,
+        statements: 90,
+        functions: 90,
+        branches: 90,
+      },
     },
   },
 });

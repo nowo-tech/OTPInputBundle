@@ -5,15 +5,14 @@ declare(strict_types=1);
 namespace Nowo\OtpInputBundle\Tests\Unit\Form;
 
 use Nowo\OtpInputBundle\Form\OtpType;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\Form\FormView;
 
-/**
- * @covers \Nowo\OtpInputBundle\Form\OtpType
- */
+#[CoversClass(OtpType::class)]
 final class OtpTypeTest extends TestCase
 {
     public function testSubmitNormalizesNumericString(): void

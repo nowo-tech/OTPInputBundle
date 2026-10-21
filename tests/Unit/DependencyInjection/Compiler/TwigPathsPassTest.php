@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Nowo\OtpInputBundle\Tests\Unit\DependencyInjection\Compiler;
 
 use Nowo\OtpInputBundle\DependencyInjection\Compiler\TwigPathsPass;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -12,9 +13,7 @@ use Symfony\Component\DependencyInjection\Definition;
 
 use function dirname;
 
-/**
- * @covers \Nowo\OtpInputBundle\DependencyInjection\Compiler\TwigPathsPass
- */
+#[CoversClass(TwigPathsPass::class)]
 final class TwigPathsPassTest extends TestCase
 {
     public function testProcessAddsViewsPathWhenNativeLoaderAliasExists(): void

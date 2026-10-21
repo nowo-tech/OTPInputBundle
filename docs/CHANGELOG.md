@@ -30,6 +30,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Makefile: new `help` target (default goal) in the canonical block order (REQ-MAKE-001); `release-check` runs sequentially from `ensure-up` and adds `check-no-raw-html-form` and `validate-translations` (REQ-MAKE-002).
+- `validate-translations` also checks translation key parity across the 7 bundle locales and the demo locales (REQ-MAKE-004).
+- TypeScript coverage gate: Vitest thresholds of 90% and a CI `frontend` job; new tests for keyboard edge cases, invalid input, uppercase mode, the DOM observer and the custom element registry guard (lines 100%, branches 97.33%) (REQ-TEST-003 / REQ-TEST-007).
+- PHPUnit tests use `#[CoversClass]` attributes instead of `@covers` docblocks (REQ-TEST-010).
+- Demo smoke follows redirects and requires a final HTTP 200; new `Demo smoke` workflow (tags, weekly, manual) (REQ-TEST-011).
+- The form type relies on autoconfigure for its `form.type` tag (REQ-SF-003).
+- `composer.json`: homepage and support URLs use the real repository slug `OTPInputBundle`; `support.docs` added (REQ-PKG-004 / REQ-DOCS-014).
+- Demo port aligned on 8072 everywhere (compose default, smoke fallback, docs) (REQ-DEMO-005).
+
+### Fixed
+
+- Demo `make up` installs Composer dependencies in a one-off container before starting FrankenPHP, so a fresh checkout no longer crash-loops the worker on a missing `vendor/` (the smoke failed with HTTP 000).
+- `pnpm install --frozen-lockfile` works again: the `vite` override is scoped to `vite@<6.4.3`.
+- `.scripts/check-no-cursor-coauthor.sh` also runs inside git worktrees (`.git` file instead of directory).
+
 ## [1.8.1] - 2026-10-20
 
 Dependency refresh (bundle and demos), php-cs-fixer ParallelConfig(2). See [UPGRADING](UPGRADING.md#to-181).

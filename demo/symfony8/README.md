@@ -9,7 +9,7 @@ See [FrankenPHP demo guide](../../docs/DEMO-FRANKENPHP.md) for development and p
 ```bash
 make up
 make install
-# Open http://localhost:8071 (or set PORT in .env)
+# Open http://localhost:8072 (or set PORT in .env)
 ```
 
 Language is switched via URL (locale prefix). Supported: `en`, `es`. Use the language dropdown in the navbar.

@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Nowo\OtpInputBundle\Tests\Unit\DependencyInjection;
 
 use Nowo\OtpInputBundle\DependencyInjection\Configuration;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\Definition\Processor;
 
-/**
- * @covers \Nowo\OtpInputBundle\DependencyInjection\Configuration
- */
+#[CoversClass(Configuration::class)]
 final class ConfigurationTest extends TestCase
 {
     public function testGetConfigTreeBuilderReturnsTreeWithAlias(): void

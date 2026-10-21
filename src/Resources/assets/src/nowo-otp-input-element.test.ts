@@ -34,4 +34,16 @@ describe('nowo-otp-input-element', () => {
     expect(() => ensureNowoOtpInputDefined()).not.toThrow();
     Object.defineProperty(globalThis, 'customElements', { configurable: true, value: original });
   });
+
+  it('requests the definition only once while the registry has not resolved it yet', async () => {
+    vi.resetModules();
+    const { ensureNowoOtpInputDefined: ensureFresh } = await import('./nowo-otp-input-element');
+    vi.spyOn(customElements, 'get').mockReturnValue(undefined);
+    const define = vi.spyOn(customElements, 'define').mockImplementation(() => undefined);
+
+    ensureFresh();
+    ensureFresh();
+
+    expect(define).toHaveBeenCalledTimes(1);
+  });
 });

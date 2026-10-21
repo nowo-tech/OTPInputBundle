@@ -7,11 +7,11 @@ help:
 
 up:
 	@if [ ! -f .env ]; then cp .env.example .env 2>/dev/null || true; fi
+	@echo "Installing dependencies (one-off container: the worker-mode server needs vendor/ before it starts)..."
+	@$(COMPOSE) run --rm -T --no-deps --entrypoint composer -e COMPOSER_MEMORY_LIMIT=-1 php install --no-interaction
 	$(COMPOSE) up -d
 	@echo "Waiting for container to be ready..."
 	@sleep 5
-	@echo "Installing dependencies..."
-	@$(COMPOSE) exec -T -e COMPOSER_MEMORY_LIMIT=-1 php composer install --no-interaction
 	@$(MAKE) link-bundle
 	@PORT=$$(grep "^PORT=" .env 2>/dev/null | cut -d= -f2 | tr -d '\r'); \
 	[ -z "$$PORT" ] && PORT=$$(grep "^PORT=" .env.example 2>/dev/null | cut -d= -f2 | tr -d '\r'); \
@@ -48,7 +48,7 @@ cache-clear: ensure-up
 	$(COMPOSE) exec php php bin/console cache:clear
 
 link-bundle: ensure-up
-	$(COMPOSE) exec php sh -c "rm -rf vendor/nowo-tech/otp-input-bundle && ln -s /var/otp-input-bundle vendor/nowo-tech/otp-input-bundle && php bin/console cache:clear && php bin/console assets:install public"
+	$(COMPOSE) exec -T php sh -c "rm -rf vendor/nowo-tech/otp-input-bundle && ln -s /var/otp-input-bundle vendor/nowo-tech/otp-input-bundle && php bin/console cache:clear && php bin/console assets:install public"
 
 update-bundle: ensure-up
 	$(COMPOSE) exec php composer update nowo-tech/otp-input-bundle --no-interaction

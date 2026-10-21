@@ -85,5 +85,5 @@ The value received in `otpCode` is a single string like `123456`.
 ## Tests and coverage
 
 - PHP: 100%
-- TS/JS: 100%
+- TS/JS: 97.33% (Vitest; lowest of statements/branches/functions/lines — lines 100%, branches 97.33%; CI gate 90%)
 - Python: N/A
