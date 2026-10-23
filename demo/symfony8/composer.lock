@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "/var/otp-input-bundle",
-                "reference": "ffd1b650a1d62dd210bb928849ec0c848592e4e1"
+                "reference": "655ccbf9575c3e9b9b5bf3b0819d8f0375ccd0e6"
             },
             "require": {
                 "php": ">=8.2 <8.6",
@@ -113,7 +113,7 @@
                 }
             ],
             "description": "Symfony OTP FormType with multi-input UI mapped to a single field value.",
-            "homepage": "https://github.com/nowo-tech/OtpInputBundle",
+            "homepage": "https://github.com/nowo-tech/OTPInputBundle",
             "keywords": [
                 "2fa",
                 "form",
@@ -126,8 +126,9 @@
                 "vite"
             ],
             "support": {
-                "issues": "https://github.com/nowo-tech/OtpInputBundle/issues",
-                "source": "https://github.com/nowo-tech/OtpInputBundle"
+                "issues": "https://github.com/nowo-tech/OTPInputBundle/issues",
+                "source": "https://github.com/nowo-tech/OTPInputBundle",
+                "docs": "https://github.com/nowo-tech/OTPInputBundle/blob/master/README.md"
             },
             "transport-options": {
                 "relative": false
@@ -3967,16 +3968,16 @@
     "packages-dev": [
         {
             "name": "nowo-tech/hot-reload-bundle",
-            "version": "v1.6.1",
+            "version": "v1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nowo-tech/HotReloadBundle.git",
-                "reference": "6d3117328bd9d7f55a70743567d04ee25d6bc366"
+                "reference": "cf84e69a6f93f95f06876638337f9f792b2bcb0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nowo-tech/HotReloadBundle/zipball/6d3117328bd9d7f55a70743567d04ee25d6bc366",
-                "reference": "6d3117328bd9d7f55a70743567d04ee25d6bc366",
+                "url": "https://api.github.com/repos/nowo-tech/HotReloadBundle/zipball/cf84e69a6f93f95f06876638337f9f792b2bcb0a",
+                "reference": "cf84e69a6f93f95f06876638337f9f792b2bcb0a",
                 "shasum": ""
             },
             "require": {
@@ -4054,7 +4055,7 @@
                 "issues": "https://github.com/nowo-tech/HotReloadBundle/issues",
                 "source": "https://github.com/nowo-tech/HotReloadBundle"
             },
-            "time": "2026-10-13T10:57:34+00:00"
+            "time": "2026-10-21T05:26:17+00:00"
         },
         {
             "name": "nowo-tech/twig-inspector-bundle",
