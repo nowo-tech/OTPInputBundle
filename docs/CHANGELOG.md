@@ -31,6 +31,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Demo: `otp_demo/show.html.twig` renders the form through the child loop instead of `form_row(form.otp)` (REQ-TWIG-003).
+
 ## [1.8.2] - 2026-10-21
 
 Makefile help and release-check chain, TypeScript coverage gate, demo smoke HTTP 200, CoversClass attributes. See [UPGRADING](UPGRADING.md#to-182).
