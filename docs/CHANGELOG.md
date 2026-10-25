@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.8.3] - 2026-10-25](#183---2026-10-25)
 - [[1.8.2] - 2026-10-21](#182---2026-10-21)
 - [[1.8.1] - 2026-10-20](#181---2026-10-20)
 - [[1.8.0] - 2026-10-13](#180---2026-10-13)
@@ -31,10 +32,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.8.3] - 2026-10-25
+
+Reproducible JS bundle: the build stamp is a hash of the sources instead of the build time. See [UPGRADING](UPGRADING.md#to-183).
+
 ### Changed
 
 - **Assets:** reproducible bundle build. `__OTP_INPUT_BUILD_TIME__` now holds a build id (a hash of the TypeScript/CSS sources and `pnpm-lock.yaml`) instead of the build time, so rebuilding unchanged sources (`make assets`, `make release-check`) no longer rewrites the committed JS; the console line reads `script loaded, build: <id>`.
 - Demo: `otp_demo/show.html.twig` renders the form through the child loop instead of `form_row(form.otp)` (REQ-TWIG-003).
+
+[1.8.3]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.8.3
 
 ## [1.8.2] - 2026-10-21
 

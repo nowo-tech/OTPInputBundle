@@ -3,6 +3,7 @@
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 1.8.3](#to-183)
 - [To 1.8.2](#to-182)
 - [To 1.8.1](#to-181)
 - [To 1.8.0](#to-180)
@@ -32,6 +33,14 @@
 - [Breaking changes](#breaking-changes)
 
 ## Unreleased
+
+## To 1.8.3
+
+From **1.8.2**:
+
+```bash
+composer update nowo-tech/otp-input-bundle
+```
 
 ## To 1.8.2
 
