@@ -210,7 +210,7 @@ describe('otp-input entrypoint', () => {
     expect(hidden.value).toBe('7');
   });
 
-  it('covers fallback branches for build time and clipboardData', async () => {
+  it('covers fallback branches for build id and clipboardData', async () => {
     (globalThis as { __OTP_INPUT_BUILD_TIME__?: string }).__OTP_INPUT_BUILD_TIME__ = 'test-build-time';
     document.body.innerHTML = `
       <div data-nowo-otp-container="1" id="otp-wrap-2">
