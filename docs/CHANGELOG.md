@@ -32,6 +32,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Docs (REQ-TWIG-001): USAGE states the override freeze rule (an application file at the override path always wins and does not pick up vendor changes until removed or merged), the upgrade-safe alternatives and how to recover the vendor template, with the table of overridable templates.
+
 ## [1.8.3] - 2026-10-25
 
 Reproducible JS bundle: the build stamp is a hash of the sources instead of the build time. See [UPGRADING](UPGRADING.md#to-183).

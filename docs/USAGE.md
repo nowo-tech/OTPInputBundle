@@ -81,3 +81,14 @@ Use the directory name **`NowoOtpInputBundle`** (matches `Bundle::getName()`).
 | `Form/otp_input_theme_foundation5.html.twig` | `templates/bundles/NowoOtpInputBundle/Form/otp_input_theme_foundation5.html.twig` |
 | `Form/otp_input_theme_foundation6.html.twig` | `templates/bundles/NowoOtpInputBundle/Form/otp_input_theme_foundation6.html.twig` |
 | `Form/otp_input_theme_tailwind2.html.twig` | `templates/bundles/NowoOtpInputBundle/Form/otp_input_theme_tailwind2.html.twig` |
+
+Each file is the form theme for one CSS framework (`otp_input_theme.html.twig` is the framework-neutral default used by `OtpType`; `_table`, `_bootstrap*`, `_foundation*`, `_tailwind2` mirror Symfony's own form themes).
+
+Procedure: copy the vendor file to the override path above (same relative path and filename), clear the cache in dev (`php bin/console cache:clear`), and treat the copy as a fork.
+
+**Override vs upgrade (freeze rule).** An application file at the override path always wins and will not pick up vendor changes for that path until removed or merged. A full-file override is an escape hatch: that `<subpath>` stays frozen on every `composer update` while the rest of the bundle keeps upgrading.
+
+Prefer the upgrade-safe path: the field options (`container_class`, `input_class`, `gap_class`, `length`, `numeric_only`, …), the translations and CSS on the `nowo-otp-*` classes cover most needs without a Twig fork. If you only need different markup for one framework, override that single theme file, not all of them.
+
+**Recovering upstream after a freeze:** delete (or rename aside) the application override, clear the cache (`php bin/console cache:clear`), and re-apply only the customisation you still need. Diff your copy against the new vendor file under `vendor/nowo-tech/otp-input-bundle/src/Resources/views/` before re-copying.
+
