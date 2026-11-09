@@ -16,6 +16,7 @@ Regenerate with `make -C demo/symfony8 demo-screenshots` (REQ-DEMO-013).
 - [Form type](#form-type)
 - [Frontend script](#frontend-script)
 - [Customization](#customization)
+- [Using it from a DDD / hexagonal application](#using-it-from-a-ddd--hexagonal-application)
 - [Twig template overrides](#twig-template-overrides)
 
 ## Form type
@@ -61,6 +62,42 @@ The script defines the `<nowo-otp-input>` custom element (light DOM: hidden Symf
 - `uppercase`: normalize alpha chars to uppercase
 - `container_class`, `input_class`, `gap_class`: full CSS control
 - `autofocus`: autofocus first OTP digit
+
+## Using it from a DDD / hexagonal application
+
+`OtpType` is a **presentation** component: a form field that renders N boxes and submits one normalized string. It has
+no entities, no Doctrine mapping, no events, and it does not generate, send or verify codes. Your domain never
+depends on the bundle.
+
+- Bind the field to a string property of your form DTO or command (for example `VerifyLoginCode::$code`); the value is
+  digits only (or `A-Z0-9` with `numeric_only: false`), uppercased with `uppercase: true`, and at most `length`
+  characters.
+- Generating, storing, rate-limiting and verifying the code stays in your application/domain (or in your 2FA library).
+- The bundle does not enforce the minimum length: add the constraint on your DTO.
+
+```php
+use Symfony\Component\Validator\Constraints as Assert;
+
+final class VerifyLoginCode
+{
+    #[Assert\NotBlank]
+    #[Assert\Length(exactly: 6)]
+    public string $code = '';
+}
+```
+
+If you want a domain value object instead of a string, add your own model transformer to the field; it runs after the
+bundle's one:
+
+```php
+$builder->add('code', OtpType::class, ['length' => 6]);
+$builder->get('code')->addModelTransformer(new CallbackTransformer(
+    static fn (?OneTimeCode $code): string => $code?->value() ?? '',
+    static fn (string $code): ?OneTimeCode => '' === $code ? null : new OneTimeCode($code),
+));
+```
+
+Known limitations: a code shorter than `length` is not rejected by the field itself.
 
 ## Twig template overrides
 
