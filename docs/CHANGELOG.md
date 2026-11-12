@@ -34,6 +34,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Tests (REQ-RUNTIME-002): `WorkerKeptAliveKernelTest` renders and submits a host form with `OtpType` 1000 times in ONE kernel without any reset, alternating two inputs and locales, and asserts no state carries over and flat memory. `docs/FRANKENPHP-WORKER-AUDIT.md` refreshed (version, test, reset-false statement, rule 7).
+
 - Docs (REQ-TWIG-001): USAGE states the override freeze rule (an application file at the override path always wins and does not pick up vendor changes until removed or merged), the upgrade-safe alternatives and how to recover the vendor template, with the table of overridable templates.
 - Docs: new USAGE section "Using it from a DDD / hexagonal application" (where the bundle sits in a hexagonal host, the ports, events and DTOs to build an anti-corruption layer on, and the known limitations).
 
