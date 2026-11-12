@@ -3,8 +3,8 @@
 | Field | Value |
 |-------|-------|
 | Package | `nowo-tech/otp-input-bundle` (`symfony-bundle`) |
-| Audited revision | `v1.6.0` |
-| Audit date | 2026-09-24 |
+| Audited revision | `v1.8.3` (re-checked 2026-11-12; the runtime code is unchanged since the `v1.6.0` audit) |
+| Audit date | 2026-11-12 (first pass 2026-09-24) |
 | Target runtime | FrankenPHP **worker** with **`FRANKENPHP_RESET_KERNEL=false`** (sticky Kernel / “Friendly Worker”) |
 | Method | Manual review of every file under `src/` (form type, data transformer, DI extension, configuration, compiler pass, `services.yaml`, Twig themes) + PHPStan classic + worker-strict + hardening |
 | **Verdict** | ✅ **100% compatible** under Scenario B (`reset_kernel: false`) — no remediations required for sticky Kernel |
@@ -15,6 +15,7 @@
 - [Summary](#summary)
 - [Services reviewed](#services-reviewed)
 - [Findings](#findings)
+- [Kept-alive kernel test](#kept-alive-kernel-test)
 - [Usage recommendations in worker mode](#usage-recommendations-in-worker-mode)
 - [Re-audit triggers](#re-audit-triggers)
 
@@ -69,6 +70,14 @@ No open findings.
 `OtpType::buildView()` writes the submitted digits and options into the `FormView` of the current request only, and `configureOptions()` reads the `readonly` defaults (scalars only — no shared mutable arrays). Under Scenario B the same `OtpType` instance is reused; consecutive form builds with different options cannot poison later requests (covered by unit regression `testSharedInstanceDoesNotLeakOptionsAcrossConsecutiveBuilds`).
 
 Info: the OTP code is security-sensitive, but the bundle never keeps it outside the form objects of the request that submitted it, so it cannot leak to the next request on the same worker.
+
+## Kept-alive kernel test
+
+The bundle is **safe with kernel reset false**: no shared service keeps request data, so nothing needs `kernel.reset`.
+
+`tests/Integration/Worker/WorkerKeptAliveKernelTest::testFormRenderAndSubmitInOneKernelWithoutResetCarriesNoStateAndKeepsMemoryFlat` (REQ-RUNTIME-002) boots ONE kernel (FrameworkBundle, TwigBundle and this bundle, host kernel in `tests/Fixtures/Worker/`) and never calls `services_resetter` or `kernel.reset`. Through `http_kernel` (`handle()` + `terminate()`) it renders (GET) and submits (POST) a host form with an `OtpType` field 1000 times (2000 requests), alternating two inputs (6 digits numeric `123456`, locale `en` / 4 characters alphanumeric `ab12`, locale `es`). Every response must contain only its own digit count, options and submitted value, none of the other input's, and memory growth after a 100-iteration warm-up must stay under 4 MiB.
+
+Rule 7 (host entity manager): the bundle has no persistence and never flushes or clears an entity manager; a host must never clear the default entity manager from a reset hook for this bundle's sake.
 
 ## Usage recommendations in worker mode
 
