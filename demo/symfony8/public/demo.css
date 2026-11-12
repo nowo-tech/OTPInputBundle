@@ -1,0 +1,6 @@
+/* The OTP digit boxes are the bundle's own markup (UiKit has no one-character input); only layout, no colours. */
+.otp-demo-digit {
+  width: 3rem;
+  text-align: center;
+  padding-inline: 0;
+}
