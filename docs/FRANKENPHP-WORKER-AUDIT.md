@@ -3,7 +3,7 @@
 | Field | Value |
 |-------|-------|
 | Package | `nowo-tech/otp-input-bundle` (`symfony-bundle`) |
-| Audited revision | `v1.8.3` (re-checked 2026-11-12; the runtime code is unchanged since the `v1.6.0` audit) |
+| Audited revision | `v1.8.3` (reviewed again on 2026-11-12 at this version; all shared services are stateless, see the services table) |
 | Audit date | 2026-11-12 (first pass 2026-09-24) |
 | Target runtime | FrankenPHP **worker** with **`FRANKENPHP_RESET_KERNEL=false`** (sticky Kernel / “Friendly Worker”) |
 | Method | Manual review of every file under `src/` (form type, data transformer, DI extension, configuration, compiler pass, `services.yaml`, Twig themes) + PHPStan classic + worker-strict + hardening |
