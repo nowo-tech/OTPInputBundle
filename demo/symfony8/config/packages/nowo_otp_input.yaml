@@ -2,4 +2,4 @@ nowo_otp_input:
   length: 6
   numeric_only: true
   uppercase: true
-  form_theme: 'bootstrap_5_layout.html.twig'
+  form_theme: 'form_div_layout.html.twig'
