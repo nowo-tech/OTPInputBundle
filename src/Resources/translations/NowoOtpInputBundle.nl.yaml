@@ -1,2 +1,3 @@
 otp:
   placeholder: "Voer de OTP-code in"
+  digit_label: "Teken %position% van %length%"

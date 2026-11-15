@@ -1,2 +1,3 @@
-{% use 'foundation_5_layout.html.twig' %}
+{#- foundation_5_layout.html.twig extends form_div_layout, so it cannot be a trait. The OTP widget renders its
+    fallback through the host theme's own text widget, so the plain bundle theme is enough here. -#}
 {% use '@NowoOtpInputBundle/Form/otp_input_theme.html.twig' %}

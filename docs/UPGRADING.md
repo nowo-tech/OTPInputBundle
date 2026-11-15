@@ -34,6 +34,33 @@
 
 ## Unreleased
 
+Target **1.9.0** (from 1.8.x): `composer update nowo-tech/otp-input-bundle`, then `php bin/console assets:install`
+(the JS changed). Nothing else to do if you use the bundle themes.
+
+**What changes in the markup.** The named field is no longer `type="hidden"`: it is a visible text input (no-JS
+fallback, class `nowo-otp-input__fallback`, `data-nowo-otp-fallback="1"`) and the boxes group sits in a new
+class-less `<div data-nowo-otp-boxes="1" hidden>` wrapper (CSS with a child combinator such as
+`nowo-otp-input > .my-gap` must become a descendant selector). `otp-input.js` switches the field to `type="hidden"` and reveals the boxes, and sets
+`data-nowo-otp-init="1"` on the host. Without the script (or with JavaScript off) users type the code in the field;
+the submitted value is the same.
+
+- **You load `otp-input.js` on every page with the field** (required before, too): nothing changes for users with
+  JavaScript. If you load it with `defer` at the end of `<body>`, the field may show for one frame before the boxes;
+  to avoid it, load the script in `<head>` (with `defer`) or hide the fallback in your CSS until init, for example
+  `@media (scripting: enabled) { nowo-otp-input:not([data-nowo-otp-init]) .nowo-otp-input__fallback { visibility: hidden; } }`.
+- **You override `nowo_otp_input_widget`** in your own form theme (or override `otp_input_theme.html.twig` under
+  `templates/bundles/NowoOtpInputBundle/`): your markup keeps working unchanged (hidden named input + visible boxes are
+  left as they are by the script), but it has no no-JS fallback. To get it, merge the 1.9.0 block: render the named
+  field with `{{ form_widget(form, {type: 'text', value: ..., attr: ...}) }}` from inside the block (it renders the
+  parent text widget of your theme, so REQ-TWIG-005 holds), wrap the `[data-nowo-otp-render-target]` group in
+  `<div data-nowo-otp-boxes="1" hidden>` and give each box an `id` (`{{ id }}_digit_N`) and an `aria-label`. If you cannot change the markup yet, the
+  CSS convention is: field visible and boxes hidden while the host lacks `data-nowo-otp-init="1"`, the field hidden
+  once it is set.
+- **You select the field with `input[type="hidden"]`** in your own JS or tests: select it with
+  `input[data-controller~="nowo-otp-input"]` (or by `name`) instead; it is only hidden after the script runs.
+- **Foundation themes**: `form_theme: foundation_5_layout.html.twig` / `foundation_6_layout.html.twig` work now
+  (they crashed before).
+
 ## To 1.8.3
 
 From **1.8.2**:

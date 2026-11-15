@@ -32,8 +32,47 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+Target **1.9.0**: `OtpType` works without JavaScript. No BC break for hosts that use the bundle themes; see
+[UPGRADING](UPGRADING.md#unreleased) if you override `nowo_otp_input_widget`.
+
+### Added
+
+- **No-JS fallback (progressive enhancement).** The server-rendered field is now a real, named, single text input
+  (same `name` and `id` as the former hidden input, `inputmode="numeric"`/`"text"`, `autocomplete="one-time-code"`,
+  `maxlength` = `length`, `data-nowo-otp-fallback="1"`), so the code can be typed and submitted with JavaScript off.
+  The submitted value and the server-side handling are unchanged. It is rendered by the host theme's own text widget
+  (`form-control` on Bootstrap, `nowo-ui-input` on UiKit, …), with the class `nowo-otp-input__fallback`; host `attr`
+  values (`autocomplete`, `inputmode`, `class`, `placeholder`, …) win over the defaults without duplicate attributes.
+- The digit boxes are still server-rendered, inside a new class-less wrapper `<div data-nowo-otp-boxes="1" hidden>`
+  around the `[data-nowo-otp-render-target]` group (not displayed, not focusable, not exposed to assistive
+  technology; class-less so that host CSS on `gap_class`, e.g. `display: flex`, cannot override `hidden`). `otp-input.js` copies anything typed before it ran into the boxes,
+  switches the named input to `type="hidden"`, reveals the boxes, points the visible `<label>` at them (group
+  `aria-labelledby`, label `for` → first box) and moves `autofocus` to the first empty box. The host element carries
+  `data-nowo-otp-init="1"` from then on: this attribute is now a **stable API** for CSS (hide the boxes / show the
+  field until it is present).
+- Accessibility: every box has a translated `aria-label` (`otp.digit_label`, "Character 1 of 6"); help and error ids
+  (`aria-describedby`) and `aria-invalid` are rendered on the fallback field and on the boxes (first box: description;
+  every box: invalid state), with Symfony 6.4 and 7.x/8.x form rows.
+- Translation key `otp.digit_label` in the 7 bundle locales.
+
+### Fixed
+
+- The digit group `aria-label` showed the literal `otp.placeholder` when the field used another
+  `translation_domain` (e.g. AuthKit passes its own domain for the field label) or `translation_domain: false`. The
+  bundle's own labels are now always translated with the `NowoOtpInputBundle` domain, with an English fallback when
+  the application has no translator.
+- `form_theme: foundation_5_layout.html.twig` / `foundation_6_layout.html.twig` crashed ("cannot be used as a trait"):
+  Symfony's Foundation layouts extend `form_div_layout` and cannot be `use`d. Both bundle variants now use the default
+  OTP theme only (the OTP field renders through the host theme anyway).
+
 ### Tests
 
+- No-JS fallback: render tests for the fallback markup, a11y wiring, host attributes and every theme variant;
+  `NoJsSubmissionTest` submits the plain field through `HttpKernelBrowser` (no JavaScript); the kept-alive worker test
+  (kernel reset false) also checks the fallback field and the per-locale box labels; Vitest for the enhancement;
+  Playwright runs with JavaScript on and off, each with an axe WCAG 2 A/AA scan of the form.
+- Dev dependencies: `symfony/css-selector` (DomCrawler CSS filters in tests), `symfony/translation` (translated
+  labels in the worker kernel); demo e2e: `@axe-core/playwright`.
 - CI: the coverage run is now `composer test-coverage-100` (new script, `.scripts/check-coverage.php`), so a pull request that drops statement or element coverage below **100%** fails the build; before, nothing in CI checked a threshold. The suite is already at 100%.
 
 ### Changed
