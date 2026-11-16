@@ -3,6 +3,7 @@
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 1.9.0](#to-190)
 - [To 1.8.3](#to-183)
 - [To 1.8.2](#to-182)
 - [To 1.8.1](#to-181)
@@ -33,6 +34,14 @@
 - [Breaking changes](#breaking-changes)
 
 ## Unreleased
+
+## To 1.9.0
+
+From **1.8.3**:
+
+```bash
+composer update nowo-tech/otp-input-bundle
+```
 
 Target **1.9.0** (from 1.8.x): `composer update nowo-tech/otp-input-bundle`, then `php bin/console assets:install`
 (the JS changed). Nothing else to do if you use the bundle themes.

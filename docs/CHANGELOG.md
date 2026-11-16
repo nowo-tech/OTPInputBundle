@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.9.0] - 2026-11-16](#190---2026-11-16)
 - [[1.8.3] - 2026-10-25](#183---2026-10-25)
 - [[1.8.2] - 2026-10-21](#182---2026-10-21)
 - [[1.8.1] - 2026-10-20](#181---2026-10-20)
@@ -32,8 +33,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.9.0] - 2026-11-16
+
 Target **1.9.0**: `OtpType` works without JavaScript. No BC break for hosts that use the bundle themes; see
-[UPGRADING](UPGRADING.md#unreleased) if you override `nowo_otp_input_widget`.
+[UPGRADING](UPGRADING.md#to-190) if you override `nowo_otp_input_widget`.
 
 ### Added
 
@@ -94,6 +97,8 @@ Target **1.9.0**: `OtpType` works without JavaScript. No BC break for hosts that
 - CI: the coverage run is now `composer test-coverage-100` (new script, `.scripts/check-coverage.php`), so a pull
   request that drops statement or element coverage below **100%** fails the build; before, nothing in CI checked a
   threshold. The suite is already at 100%.
+
+[1.9.0]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.9.0
 
 ## [1.8.3] - 2026-10-25
 
