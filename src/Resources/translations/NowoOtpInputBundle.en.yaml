@@ -1,2 +1,3 @@
 otp:
   placeholder: "Enter the OTP code"
+  digit_label: "Character %position% of %length%"

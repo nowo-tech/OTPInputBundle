@@ -39,12 +39,12 @@ final class WorkerHostKernel extends Kernel
 
     public function getCacheDir(): string
     {
-        return sys_get_temp_dir() . '/nowo-otp-worker-kept-alive/cache';
+        return sys_get_temp_dir() . '/nowo-otp-worker-kept-alive/' . self::VERSION . '/cache';
     }
 
     public function getLogDir(): string
     {
-        return sys_get_temp_dir() . '/nowo-otp-worker-kept-alive/log';
+        return sys_get_temp_dir() . '/nowo-otp-worker-kept-alive/' . self::VERSION . '/log';
     }
 
     protected function configureContainer(ContainerConfigurator $container): void
@@ -56,6 +56,7 @@ final class WorkerHostKernel extends Kernel
             'handle_all_throwables' => true,
             'php_errors'            => ['log' => true],
             'csrf_protection'       => false,
+            'translator'            => ['fallbacks' => ['en']],
         ]);
         $container->extension('twig', ['default_path' => __DIR__]);
         $container->services()

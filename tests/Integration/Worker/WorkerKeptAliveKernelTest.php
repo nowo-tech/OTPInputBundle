@@ -19,7 +19,8 @@ use function sprintf;
 /**
  * REQ-RUNTIME-002: ONE kept-alive kernel (FrankenPHP worker mode, kernel reset false). The `services_resetter` and
  * `kernel.reset` are never called. A host form with an `OtpType` field is rendered and submitted through
- * `http_kernel` (handle + terminate) N times, alternating two inputs with different options and locales.
+ * `http_kernel` (handle + terminate) N times, alternating two inputs with different options and locales (the no-JS fallback field and the translated box
+ * labels must follow the current request only).
  * Each response must contain only its own data and memory must stay flat.
  */
 #[CoversNothing]
@@ -40,8 +41,8 @@ final class WorkerKeptAliveKernelTest extends TestCase
         self::assertInstanceOf(TerminableInterface::class, $http);
 
         $inputs = [
-            'alpha' => ['locale' => 'en', 'code' => '123456', 'digits' => 6],
-            'beta'  => ['locale' => 'es', 'code' => 'ab12', 'digits' => 4],
+            'alpha' => ['locale' => 'en', 'code' => '123456', 'digits' => 6, 'label' => 'Character 1 of 6'],
+            'beta'  => ['locale' => 'es', 'code' => 'ab12', 'digits' => 4, 'label' => 'Carácter 1 de 4'],
         ];
 
         $baseline = 0;
@@ -70,6 +71,11 @@ final class WorkerKeptAliveKernelTest extends TestCase
                 self::assertStringContainsString('data-nowo-otp-input-length-value="' . $in['digits'] . '"', $body, $ctx);
                 self::assertStringNotContainsString('data-nowo-otp-input-length-value="' . $inputs[$other]['digits'] . '"', $body, $ctx);
                 self::assertSame($in['digits'], substr_count($body, 'data-nowo-otp-digit='), $ctx);
+                // No-JS fallback: the named field is a visible text input; labels follow this request's locale only.
+                self::assertStringContainsString('type="text" id="f_code" name="f[code]"', $body, $ctx);
+                self::assertStringContainsString('maxlength="' . ($in['digits'] * 2) . '"', $body, $ctx);
+                self::assertStringContainsString('aria-label="' . $in['label'] . '"', $body, $ctx);
+                self::assertStringNotContainsString('aria-label="' . $inputs[$other]['label'] . '"', $body, $ctx);
                 if ($method === Request::METHOD_POST) {
                     self::assertStringContainsString('submitted=' . strtoupper($in['code']) . ';', $body, $ctx);
                     self::assertStringNotContainsString(strtoupper($inputs[$other]['code']), $body, $ctx);

@@ -1,31 +1,86 @@
 {% use 'form_div_layout.html.twig' %}
 
+{#
+    Progressive enhancement (1.9.0):
+    - Without JavaScript the named field is a real single text input (inputmode, autocomplete="one-time-code",
+      maxlength = 2 x length, so separators such as `123 456` fit; the server keeps `length` characters) rendered by the host theme's own text widget, so the code can always be submitted.
+    - The digit boxes are server-rendered inside a `hidden` wrapper (not displayed, not focusable, not exposed to
+      assistive technology). otp-input.js switches the named input to type="hidden", reveals the boxes and keeps
+      the value in sync.
+#}
 {% block nowo_otp_input_widget %}
     {% set currentValue = value is iterable ? value|join('') : (value ?? '') %}
     {% set maxLength = otp_length ?? 6 %}
+    {% set describedBy = attr['aria-describedby'] ?? (help is not empty ? id ~ '_help' : '') %}
+    {% set invalid = (attr['aria-invalid'] ?? null) == 'true' or errors|length > 0 %}
+    {% set fallbackPlaceholder = '' %}
+    {% if otp_placeholder_char is not empty %}
+        {% for i in 1..maxLength %}
+            {% set fallbackPlaceholder = fallbackPlaceholder ~ otp_placeholder_char %}
+        {% endfor %}
+    {% endif %}
+    {% set fallbackAttr = attr|merge({
+        class: ((attr.class ?? '') ~ ' nowo-otp-input__fallback')|trim,
+        inputmode: attr.inputmode ?? (otp_numeric_only ? 'numeric' : 'text'),
+        autocomplete: attr.autocomplete ?? 'one-time-code',
+        maxlength: attr.maxlength ?? (maxLength * 2),
+        spellcheck: attr.spellcheck ?? 'false',
+        autocapitalize: attr.autocapitalize ?? (otp_numeric_only or not otp_uppercase ? 'off' : 'characters'),
+        'data-nowo-otp-fallback': '1',
+    }) %}
+    {% if describedBy is not empty %}
+        {% set fallbackAttr = fallbackAttr|merge({'aria-describedby': describedBy}) %}
+    {% endif %}
+    {% if invalid %}
+        {% set fallbackAttr = fallbackAttr|merge({'aria-invalid': 'true'}) %}
+    {% endif %}
+    {% if fallbackPlaceholder is not empty and attr.placeholder is not defined %}
+        {% set fallbackAttr = fallbackAttr|merge({placeholder: fallbackPlaceholder}) %}
+    {% endif %}
+    {% if otp_autofocus and not otp_disabled and attr.autofocus is not defined %}
+        {% set fallbackAttr = fallbackAttr|merge({autofocus: true}) %}
+    {% endif %}
+    {#- The bundle's own labels always use the bundle domain (the field's translation_domain is the host's). Without a
+        translator (identity translator) the key would leak, so fall back to English. -#}
+    {% set groupLabel = 'otp.placeholder'|trans({}, 'NowoOtpInputBundle') %}
+    {% if groupLabel == 'otp.placeholder' %}
+        {% set groupLabel = 'Enter the OTP code' %}
+    {% endif %}
     <nowo-otp-input class="{{ otp_container_class }}"
          data-nowo-otp-container="1"
          data-nowo-otp-input-class="{{ otp_input_class }}"
          data-nowo-otp-gap-class="{{ otp_gap_class }}"
          data-nowo-otp-placeholder-char="{{ otp_placeholder_char }}">
-        {% set type = 'hidden' %}
-        {% set value = currentValue %}
-        {{ block('form_widget_simple') }}
-        <div class="{{ otp_gap_class }}" data-nowo-otp-render-target="1" role="group"{% if translation_domain is not same as(false) %} aria-label="{{ 'otp.placeholder'|trans({}, translation_domain) }}"{% endif %}>
+        {#- Calling form_widget() for this same field from inside its own widget block renders the parent type's
+            widget, i.e. the host theme's text input (form-control, nowo-ui-input, ...). -#}
+        {{ form_widget(form, {type: 'text', value: currentValue, attr: fallbackAttr}) }}
+        {#- The `hidden` wrapper has no class on purpose: host CSS on the gap class (display: flex, ...) would override
+            the user-agent `[hidden] { display: none }` rule and show the boxes without JavaScript. -#}
+        <div data-nowo-otp-boxes="1" hidden>
+        <div class="{{ otp_gap_class }}" data-nowo-otp-render-target="1" role="group" aria-label="{{ groupLabel }}">
             {% for i in 0..(maxLength - 1) %}
-                {% set digitValue = currentValue is iterable ? (currentValue[i]|default('')) : (currentValue|slice(i, 1)) %}
+                {% set digitValue = currentValue|slice(i, 1) %}
+                {% set digitParams = {'%position%': i + 1, '%length%': maxLength} %}
+                {% set digitLabel = 'otp.digit_label'|trans(digitParams, 'NowoOtpInputBundle') %}
+                {% if digitLabel == 'otp.digit_label' %}
+                    {% set digitLabel = 'Character %position% of %length%'|replace(digitParams) %}
+                {% endif %}
                 <input
                     type="text"
+                    id="{{ id }}_digit_{{ i }}"
                     inputmode="{{ otp_numeric_only ? 'numeric' : 'text' }}"
                     {% if i == 0 %}autocomplete="one-time-code"{% else %}autocomplete="off" maxlength="1"{% endif %}
                     {% if otp_placeholder_char is not empty %}placeholder="{{ otp_placeholder_char }}"{% endif %}
                     class="{{ otp_input_class }}"
                     data-nowo-otp-digit="{{ i }}"
+                    aria-label="{{ digitLabel }}"
+                    {% if i == 0 and describedBy is not empty %}aria-describedby="{{ describedBy }}"{% endif %}
+                    {% if invalid %}aria-invalid="true"{% endif %}
                     value="{{ digitValue }}"
-                    {% if otp_autofocus and i == 0 %}autofocus{% endif %}
                     {% if otp_disabled %}disabled{% endif %}
                 />
             {% endfor %}
+        </div>
         </div>
     </nowo-otp-input>
 {% endblock %}

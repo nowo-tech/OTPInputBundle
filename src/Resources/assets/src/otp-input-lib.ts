@@ -55,6 +55,88 @@ export function sanitizeChar(value: string, numericOnly: boolean, uppercase: boo
 }
 
 /**
+ * @param field - The named form field.
+ * @returns The `<label for>` of the field, if any.
+ */
+function findLabel(field: HTMLInputElement): HTMLLabelElement | null {
+  if (field.id === '') {
+    return null;
+  }
+
+  return Array.from(field.ownerDocument.querySelectorAll('label')).find((label) => label.htmlFor === field.id) ?? null;
+}
+
+/**
+ * Progressive enhancement of the no-JS markup (1.9.0+). Server side, the named field is a visible text input and the
+ * digit boxes sit in a `hidden` wrapper (`data-nowo-otp-boxes`). Here the field switches to `type="hidden"` (it keeps its name and value and
+ * leaves the focus order and the accessibility tree), whatever was typed before the script ran is copied into the
+ * boxes, the boxes are revealed and the visible label is pointed at them. The host carries `data-nowo-otp-init="1"`
+ * from this point on (stable styling hook). Markup from older or overridden themes (field already hidden, group
+ * visible) passes through unchanged.
+ *
+ * @param field - The named form field (text fallback or hidden input).
+ * @param digits - Digit boxes.
+ * @param numericOnly - Restrict to 0-9 when true.
+ * @param uppercase - Normalize letters when true.
+ */
+export function enhanceFallback(
+  field: HTMLInputElement,
+  digits: HTMLInputElement[],
+  numericOnly: boolean,
+  uppercase: boolean,
+): void {
+  const doc = field.ownerDocument;
+  const group = digits[0].closest<HTMLElement>('[data-nowo-otp-render-target]');
+  const boxes = digits[0].closest<HTMLElement>('[data-nowo-otp-boxes]');
+
+  if (boxes !== null) {
+    boxes.hidden = false;
+  }
+  if (group !== null) {
+    group.hidden = false;
+  }
+
+  if (field.type === 'hidden') {
+    return;
+  }
+
+  const active = doc.activeElement;
+  const wantsFocus = active === field || (field.hasAttribute('autofocus') && (active === null || active === doc.body));
+  const typed = field.value
+    .split('')
+    .map((c) => sanitizeChar(c, numericOnly, uppercase))
+    .filter((c) => c !== '');
+
+  if (typed.length > 0) {
+    digits.forEach((digit, index) => {
+      digit.value = typed[index] ?? '';
+    });
+  }
+
+  field.removeAttribute('autofocus');
+  field.type = 'hidden';
+  // Set after the type switch: a hidden input's value is its `value` attribute (value mode "default").
+  field.value = digits.map((d) => d.value).join('');
+
+  const label = findLabel(field);
+  if (label !== null) {
+    if (label.id === '') {
+      label.id = `${field.id}_label`;
+    }
+    group?.setAttribute('aria-labelledby', label.id);
+    if (digits[0].id !== '') {
+      label.htmlFor = digits[0].id;
+    }
+  }
+
+  if (wantsFocus) {
+    (digits.find((d) => d.value === '') ?? digits[digits.length - 1]).focus();
+  }
+
+  getLogger().debug('no-JS fallback enhanced', { id: field.id });
+}
+
+/**
  * Bind digit inputs on one OTP host. Idempotent (`data-nowo-otp-init`).
  *
  * @param container - Custom element or legacy wrapper.
@@ -76,6 +158,8 @@ export function initOtpContainer(container: OtpContainer): void {
 
   const numericOnly = toBool(hidden.dataset.nowoOtpInputNumericOnlyValue);
   const uppercase = toBool(hidden.dataset.nowoOtpInputUppercaseValue);
+
+  enhanceFallback(hidden, digits, numericOnly, uppercase);
 
   // Last known value of every box, so multi-character `input` events can tell "typed over" from autofill.
   let lastValues = digits.map((d) => d.value);
