@@ -68,7 +68,7 @@ Target **1.9.0**: `OtpType` works without JavaScript. No BC break for hosts that
 ### Tests
 
 - No-JS fallback: render tests for the fallback markup, a11y wiring, host attributes and every theme variant;
-  `NoJsSubmissionTest` submits the plain field through `HttpKernelBrowser` (no JavaScript); the kept-alive worker test
+  `NoJsSubmissionTest` reads the form with DomCrawler and posts the plain field to the kernel (no JavaScript); the kept-alive worker test
   (kernel reset false) also checks the fallback field and the per-locale box labels; Vitest for the enhancement;
   Playwright runs with JavaScript on and off, each with an axe WCAG 2 A/AA scan of the form.
 - Dev dependencies: `symfony/css-selector` (DomCrawler CSS filters in tests), `symfony/translation` (translated
