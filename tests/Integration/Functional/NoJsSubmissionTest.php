@@ -46,7 +46,7 @@ final class NoJsSubmissionTest extends TestCase
         self::assertSame('text', $field->attr('type'));
         self::assertSame('one-time-code', $field->attr('autocomplete'));
         self::assertSame('numeric', $field->attr('inputmode'));
-        self::assertSame('6', $field->attr('maxlength'));
+        self::assertSame('12', $field->attr('maxlength'), 'loose bound: room for separators, the server keeps 6');
 
         $form['f[code]'] = '123456';
 

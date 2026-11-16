@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+/** Tailwind v4 preflight puts `[hidden]` in a cascade layer; hosts often give the gap class `display: flex`. */
+const TAILWIND_LIKE_CSS = '@layer base{[hidden]:where(:not([hidden="until-found"])){display:none!important}} .nowo-ui-toolbar{display:flex}';
+
 // Owner decision 2026-11-16: OtpType must keep working without JavaScript (1.9.0 no-JS fallback).
 test.use({ javaScriptEnabled: false });
 
@@ -15,7 +18,7 @@ test.describe('OtpInput demo (JavaScript disabled)', () => {
     await expect(field).toHaveAttribute('type', 'text');
     await expect(field).toHaveAttribute('inputmode', 'numeric');
     await expect(field).toHaveAttribute('autocomplete', 'one-time-code');
-    await expect(field).toHaveAttribute('maxlength', '6');
+    await expect(field).toHaveAttribute('maxlength', '12');
     await expect(field).toHaveAccessibleDescription(/6-digit code/);
 
     await expect(host.locator('[data-nowo-otp-render-target]')).toBeHidden();
@@ -28,6 +31,16 @@ test.describe('OtpInput demo (JavaScript disabled)', () => {
     await page.getByRole('textbox', { name: 'OTP code' }).fill('654321');
     await page.getByRole('button', { name: 'Submit OTP' }).click();
     await expect(page.getByRole('alert')).toContainText('654321');
+  });
+
+  test('accepts a code typed with a space or a dash (RA-M1)', async ({ page }) => {
+    for (const typed of ['123 456', '123-456']) {
+      await page.goto('/demo/otp/numeric-6');
+      await page.getByRole('textbox', { name: 'OTP code' }).pressSequentially(typed);
+      await expect(page.getByRole('textbox', { name: 'OTP code' })).toHaveValue(typed);
+      await page.getByRole('button', { name: 'Submit OTP' }).click();
+      await expect(page.getByRole('alert')).toContainText('123456');
+    }
   });
 
   test('normalizes an alphanumeric code server-side', async ({ page }) => {
@@ -46,6 +59,13 @@ test.describe('OtpInput demo (otp-input.js blocked)', () => {
 
   test.beforeEach(async ({ page }) => {
     await page.route('**/otp-input.js', (route) => route.abort());
+  });
+
+  test('keeps the boxes hidden under Tailwind v4-like CSS (RA-I2)', async ({ page }) => {
+    await page.goto('/demo/otp/numeric-6');
+    await page.addStyleTag({ content: TAILWIND_LIKE_CSS });
+    await expect(page.getByRole('textbox', { name: 'OTP code' })).toBeVisible();
+    await expect(page.locator('[data-nowo-otp-digit]').first()).toBeHidden();
   });
 
   test('keeps the fallback field usable', async ({ page }) => {

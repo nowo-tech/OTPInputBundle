@@ -46,6 +46,17 @@ test.describe('OtpInput demo (JavaScript enabled)', () => {
     await expect(page.getByRole('alert')).toContainText('123456');
   });
 
+  test('shows the boxes and hides the field under Tailwind v4-like CSS (RA-I2)', async ({ page }) => {
+    await page.goto('/demo/otp/numeric-6');
+    await page.addStyleTag({
+      content: '@layer base{[hidden]:where(:not([hidden="until-found"])){display:none!important}} .nowo-ui-toolbar{display:flex}',
+    });
+    const host = page.locator('nowo-otp-input').first();
+    await expect(host).toHaveAttribute('data-nowo-otp-init', '1');
+    await expect(host.locator('[data-nowo-otp-digit]').first()).toBeVisible();
+    await expect(host.locator('input[name]')).toBeHidden();
+  });
+
   test('has no WCAG 2 A/AA violations in the form', async ({ page }) => {
     await page.goto('/demo/otp/numeric-6');
     await expect(page.locator('nowo-otp-input').first()).toHaveAttribute('data-nowo-otp-init', '1');

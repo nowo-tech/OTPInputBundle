@@ -54,7 +54,7 @@ Include the built OTP script in your layout (after `assets:install`):
 
 The `nowo_otp_input` package maps to `/bundles/nowootpinput` (the path created by `assets:install`).
 
-The script defines the `<nowo-otp-input>` custom element (light DOM: the Symfony input + the digit boxes) and still initializes legacy `[data-nowo-otp-container="1"]` wrappers. Load it in `<head>` with `defer` (or anywhere before the form) so the boxes replace the field before the first paint.
+The script defines the `<nowo-otp-input>` custom element (light DOM: the Symfony input + the digit boxes) and still initializes legacy `[data-nowo-otp-container="1"]` wrappers. Load it early (in `<head>` with `defer`): it reduces the flash of the no-JS field before the boxes replace it.
 
 ## Without JavaScript (progressive enhancement)
 
@@ -62,7 +62,7 @@ Since 1.9.0 the field works with JavaScript disabled or when the script fails to
 
 | | Server-rendered (no JS) | After `otp-input.js` runs |
 | --- | --- | --- |
-| Named field (`name`/`id` of the form field) | visible `<input type="text">`, `inputmode`, `autocomplete="one-time-code"`, `maxlength` = `length`, class `nowo-otp-input__fallback` | `type="hidden"`, value kept in sync with the boxes |
+| Named field (`name`/`id` of the form field) | visible `<input type="text">`, `inputmode`, `autocomplete="one-time-code"`, `maxlength` = 2 × `length`, class `nowo-otp-input__fallback` | `type="hidden"`, value kept in sync with the boxes |
 | Digit boxes | in a `role="group"` inside a class-less `<div data-nowo-otp-boxes="1" hidden>`, no `name` | visible; the label points at the first box, the group is labelled by the field label |
 | Host `<nowo-otp-input>` | no `data-nowo-otp-init` | `data-nowo-otp-init="1"` |
 
@@ -76,8 +76,15 @@ Since 1.9.0 the field works with JavaScript disabled or when the script fails to
   `<input>` is needed in your templates (REQ-TWIG-005). `attr` you pass to the field goes to it and wins over the
   defaults.
 - The server normalizes what is typed (spaces, dashes and other separators are dropped, letters uppercased with
-  `uppercase: true`), so `123 456` typed without JavaScript submits `123456`. The browser's `maxlength` limits the
-  field to `length` characters.
+  `uppercase: true`) and keeps `length` characters, so `123 456` or `123-456` typed without JavaScript submits
+  `123456`. The field's `maxlength` is 2 × `length` to leave room for separators; set `attr: {maxlength: ...}` to
+  change it.
+- Validate on the server: the field does not reject a short or empty code by itself, and `required` has no effect
+  once the field is `type="hidden"`. Add `NotBlank` and `Length(exactly: <length>)` to the host form or DTO.
+- If your theme's text widget wraps the `<input>` (input group, floating label, …), the wrapper stays in the page after
+  the script hides the field; style it with `nowo-otp-input[data-nowo-otp-init] …` if it shows borders or spacing.
+- Showing and hiding use the `hidden` attribute and the input type only (no stylesheet rule), so CSS frameworks that
+  put `[hidden]` in a cascade layer (Tailwind v4) or give `gap_class` a `display` value do not change the behaviour.
 - **Stable CSS hook:** `data-nowo-otp-init="1"` on the host means "enhanced". Themes that need to hide something until
   then can rely on it, e.g. `nowo-otp-input:not([data-nowo-otp-init]) [data-nowo-otp-boxes] { display: none; }`.
 - No inline script or style is added; the CSP rules are the same as before (load `otp-input.js` with your nonce if

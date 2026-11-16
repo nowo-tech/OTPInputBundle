@@ -73,7 +73,7 @@ final class WorkerKeptAliveKernelTest extends TestCase
                 self::assertSame($in['digits'], substr_count($body, 'data-nowo-otp-digit='), $ctx);
                 // No-JS fallback: the named field is a visible text input; labels follow this request's locale only.
                 self::assertStringContainsString('type="text" id="f_code" name="f[code]"', $body, $ctx);
-                self::assertStringContainsString('maxlength="' . $in['digits'] . '"', $body, $ctx);
+                self::assertStringContainsString('maxlength="' . ($in['digits'] * 2) . '"', $body, $ctx);
                 self::assertStringContainsString('aria-label="' . $in['label'] . '"', $body, $ctx);
                 self::assertStringNotContainsString('aria-label="' . $inputs[$other]['label'] . '"', $body, $ctx);
                 if ($method === Request::METHOD_POST) {

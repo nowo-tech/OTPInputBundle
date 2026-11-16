@@ -41,7 +41,7 @@ final class OtpInputThemeRenderTest extends TestCase
         self::assertSame('code', $named->attr('id'));
         self::assertSame('numeric', $named->attr('inputmode'));
         self::assertSame('one-time-code', $named->attr('autocomplete'));
-        self::assertSame('6', $named->attr('maxlength'));
+        self::assertSame('12', $named->attr('maxlength'));
         self::assertSame('1', $named->attr('data-nowo-otp-fallback'));
         self::assertSame('nowo-otp-input', $named->attr('data-controller'));
         self::assertStringContainsString('nowo-otp-input__fallback', (string) $named->attr('class'));
@@ -81,17 +81,18 @@ final class OtpInputThemeRenderTest extends TestCase
 
         self::assertSame('text', $named->attr('inputmode'));
         self::assertSame('characters', $named->attr('autocapitalize'));
-        self::assertSame('8', $named->attr('maxlength'));
+        self::assertSame('16', $named->attr('maxlength'));
     }
 
     public function testHostAttributesWinWithoutDuplicates(): void
     {
-        $html  = $this->render(['attr' => ['autocomplete' => 'one-time-code', 'inputmode' => 'tel', 'class' => 'host', 'placeholder' => 'Code']]);
+        $html  = $this->render(['attr' => ['autocomplete' => 'one-time-code', 'inputmode' => 'tel', 'class' => 'host', 'placeholder' => 'Code', 'maxlength' => 7]]);
         $named = (new Crawler($html))->filter('input[name]');
 
         self::assertSame(1, substr_count($html, 'inputmode="tel"'));
         self::assertSame('host nowo-otp-input__fallback', $named->attr('class'));
         self::assertSame('[NowoOtpInputBundle]Code', $named->attr('placeholder'));
+        self::assertSame('7', $named->attr('maxlength'));
     }
 
     public function testDisabledFieldIsNotAutofocusedAndDisablesEveryBox(): void

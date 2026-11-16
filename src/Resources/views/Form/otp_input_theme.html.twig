@@ -3,7 +3,7 @@
 {#
     Progressive enhancement (1.9.0):
     - Without JavaScript the named field is a real single text input (inputmode, autocomplete="one-time-code",
-      maxlength = length) rendered by the host theme's own text widget, so the code can always be submitted.
+      maxlength = 2 x length, so separators such as `123 456` fit; the server keeps `length` characters) rendered by the host theme's own text widget, so the code can always be submitted.
     - The digit boxes are server-rendered inside a `hidden` wrapper (not displayed, not focusable, not exposed to
       assistive technology). otp-input.js switches the named input to type="hidden", reveals the boxes and keeps
       the value in sync.
@@ -23,7 +23,7 @@
         class: ((attr.class ?? '') ~ ' nowo-otp-input__fallback')|trim,
         inputmode: attr.inputmode ?? (otp_numeric_only ? 'numeric' : 'text'),
         autocomplete: attr.autocomplete ?? 'one-time-code',
-        maxlength: attr.maxlength ?? maxLength,
+        maxlength: attr.maxlength ?? (maxLength * 2),
         spellcheck: attr.spellcheck ?? 'false',
         autocapitalize: attr.autocapitalize ?? (otp_numeric_only or not otp_uppercase ? 'off' : 'characters'),
         'data-nowo-otp-fallback': '1',
