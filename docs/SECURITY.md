@@ -78,7 +78,7 @@ Before tagging a release, confirm:
 | **Cryptography** | If used: keys from secure config; never hardcoded. |
 | **Permissions / exposure** | Routes and admin features documented; roles configured for production. |
 | **Limits / DoS** | Timeouts, size limits, rate limits where applicable. OTP brute-force / rate limits are host-app responsibility. |
-| **REQ-SEC-004 (AI audit)** | Pass (conditional) — Low residual (CSS class options are developer-trusted; no Critical/High); see monorepo `BUNDLES_SECURITY_ANALYSIS.md` (audit 2026-07-29). |
+| **REQ-SEC-004 (AI audit)** | Pass (good) — Low residual (CSS class options are developer-trusted; OTP brute force / rate limiting belong to the application; no Critical/High); re-audit 2026-09-28, see monorepo `BUNDLES_SECURITY_ANALYSIS.md`. Releases 1.7.0–1.9.0 (no-JS fallback) await a delta re-audit. |
 
 Record confirmation in the release PR or tag notes.
 
