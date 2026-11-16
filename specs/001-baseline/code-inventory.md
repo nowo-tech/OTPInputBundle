@@ -2,7 +2,7 @@
 
 **Baseline spec**: [`spec.md`](spec.md)  
 **Package**: `nowo-tech/otp-input-bundle`  
-**Last audited**: 2026-10-20
+**Last audited**: 2026-11-16
 
 This file proves that **every source artifact** under `src/` is referenced by the baseline specification. Co-located Vitest files enforce frontend contracts; PHPUnit covers PHP under `tests/`. FrankenPHP sticky-kernel guarantee: [`docs/FRANKENPHP-WORKER-AUDIT.md`](../../docs/FRANKENPHP-WORKER-AUDIT.md) (REQ-FP-001).
 
@@ -33,6 +33,8 @@ This file proves that **every source artifact** under `src/` is referenced by th
 | `otp-input.test.ts` | Widget contract tests | FR-UI-001 |
 | `otp-input-lib.test.ts` | Library contract tests | FR-UI-001 |
 | `nowo-otp-input-element.test.ts` | Custom element tests | FR-UI-003 |
+| `otp-input-fallback.test.ts` | No-JS fallback upgrade tests | FR-UI-004 |
+| `otp-input-lib-branches.test.ts` | Library branch tests | FR-UI-001, FR-UI-004 |
 
 ## Legacy JavaScript (`src/Resources/public/`)
 
@@ -80,11 +82,11 @@ This file proves that **every source artifact** under `src/` is referenced by th
 | --- | ---: | ---: |
 | PHP classes | 6 | 6 |
 | TypeScript production | 4 | 4 |
-| Vitest co-located | 3 | 3 |
+| Vitest co-located | 5 | 5 |
 | Legacy JavaScript | 1 | 1 |
 | Symfony config | 1 | 1 |
 | Twig form themes | 11 | 11 |
 | Translations | 7 | 7 |
-| **Total production sources** | **33** | **33** |
+| **Total production sources** | **35** | **35** |
 
-Audit command (production count): `git ls-files src | wc -l` → **33** (2026-10-20; co-located Vitest files are counted in their own category).
+Audit command (production count): `git ls-files src | wc -l` → **35** (2026-11-16, 1.9.0; co-located Vitest files are counted in their own category).

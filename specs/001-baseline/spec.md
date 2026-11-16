@@ -76,6 +76,15 @@ As an integrator, I pick a Twig form theme matching Bootstrap, Foundation, Tailw
 
 ---
 
+### User Story 5 — Submit without JavaScript (Priority: P2)
+
+A user whose browser blocks or fails to load JavaScript still sees a single text field and can type and submit the code; when the script runs, the field becomes the familiar digit boxes with whatever was already typed.
+
+**Acceptance Scenarios**:
+
+1. **Given** JavaScript is disabled, **When** the form renders, **Then** a named text input with `autocomplete="one-time-code"` is visible and the boxes stay hidden.
+2. **Given** text was typed before the script loaded, **When** `otp-input.js` initialises, **Then** the boxes show those characters and the input becomes hidden.
+
 ### Edge Cases
 
 - Backspace on empty box: focus moves to previous digit.
@@ -105,6 +114,8 @@ As an integrator, I pick a Twig form theme matching Bootstrap, Foundation, Tailw
 - **FR-UI-001**: `otp-input.ts` MUST initialize per container: sync digit inputs with hidden field, handle input/backspace/paste, sanitize chars, dispatch bubbling events, and support autofocus.
 - **FR-UI-002**: `logger.ts` MUST provide namespaced debug logger with build-time metadata.
 - **FR-UI-003**: `nowo-otp-input-element.ts` MUST register the autonomous custom element `<nowo-otp-input>` (once) that initializes the shared library from `otp-input-lib.ts` when connected.
+- **FR-UI-004**: No-JS fallback (1.9.0, progressive enhancement): the server renders a real named text input (`autocomplete="one-time-code"`, loose `maxlength`, `data-nowo-otp-fallback="1"`) plus the digit boxes inside a `hidden` wrapper; `otp-input.js` copies typed text into the boxes, switches the input to `type="hidden"`, reveals the boxes, re-points the label and sets `data-nowo-otp-init="1"` (stable CSS API). Without JavaScript the code can still be typed and submitted.
+- **FR-I18N-002**: Every digit box carries a translated `aria-label` (`otp.digit_label`) and the help / error ids; bundle labels always use the `NowoOtpInputBundle` domain with an English fallback.
 - **FR-LEGACY-001**: Committed `otp-input.js` MUST remain loadable without Vite build for downstream consumers.
 
 ### Twig themes
@@ -123,7 +134,7 @@ As an integrator, I pick a Twig form theme matching Bootstrap, Foundation, Tailw
 
 ## Success Criteria
 
-- **SC-001**: **33/33** files under `src/` mapped in [`code-inventory.md`](code-inventory.md) (audited 2026-10-20; `git ls-files src | wc -l`).
+- **SC-001**: **35/35** files under `src/` mapped in [`code-inventory.md`](code-inventory.md) (audited 2026-11-16; `git ls-files src | wc -l`).
 - **SC-002**: Config keys match `Configuration.php` and `docs/CONFIGURATION.md`.
 - **SC-003**: PHPUnit + PHPStan + Vitest pass (`composer qa`, `make test-ts`).
 - **SC-004**: Pasted codes fill all boxes and produce correct hidden value in browser tests.

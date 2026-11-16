@@ -35,6 +35,9 @@ coverage.xml
 /vendor/
 ###< symfony/framework-bundle ###
 
+# pnpm local store (REQ-GITIGNORE-003)
+/.pnpm-store
+
 # Archives / compressed
 *.zip
 *.tar

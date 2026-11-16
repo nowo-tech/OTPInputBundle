@@ -3,7 +3,7 @@
 help:
 	@echo "Symfony 8 Demo - OTP Input Bundle"
 	@echo "  make test-e2e       Playwright e2e (REQ-DEMO-013)"
-	@echo "  make demo-screenshots  Refresh docs/images/demo/*.png"
+	@echo "  make demo-screenshots  Refresh docs/images/demo/*.webp"
 
 up:
 	@if [ ! -f .env ]; then cp .env.example .env 2>/dev/null || true; fi
