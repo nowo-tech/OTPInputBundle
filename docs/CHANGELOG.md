@@ -35,6 +35,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Documentation
 
+- Demo screenshots (`docs/images/demo/overview.webp`, `interaction.webp`) are re-captured as the full demo frame (masthead, widget, WebProfiler toolbar) from the UiKit demo, and `screenshots.spec.ts` clips the frame instead of the bare card (REQ-DEMO-013).
 - Spec Kit baseline maps all 35 tracked `src/` files (two Vitest files of 1.9.0); `spec.md` gains User Story 5, FR-UI-004 (no-JS fallback) and FR-I18N-002 (REQ-SPECKIT-001/003).
 - `docs/SECURITY.md`: AI audit row matches the monorepo record (Pass good, re-audit 2026-09-28; 1.7.0–1.9.0 await a delta re-audit).
 
