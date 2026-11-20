@@ -33,6 +33,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- Demo: aligned with UiKit (masthead menu with `demo-nav-*` test id and the UiKit theme toggle, `· Symfony 8` brand and title suffix). `demo.css` stays: it only sizes the bundle's own OTP digit boxes, which UiKit has no component for.
+
 ### Documentation
 
 - Demo screenshots (`docs/images/demo/overview.webp`, `interaction.webp`) are re-captured as the full demo frame (masthead, widget, WebProfiler toolbar) from the UiKit demo, and `screenshots.spec.ts` clips the frame instead of the bare card (REQ-DEMO-013).
