@@ -35,6 +35,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Demo: runs in UiKit's demo platform shell (`nowo-tech/ui-kit-bundle` ^2.60); the demo's own header is gone and the pages use the shell page headers and section cards. The demo stylesheet (`public/demo.css`) is gone; the submitted value shows as a shell flash (translated in the controller). Demo only, no bundle change.
 - Demo: aligned with UiKit (masthead menu with `demo-nav-*` test id and the UiKit theme toggle, `· Symfony 8` brand and title suffix). `demo.css` stays: it only sizes the bundle's own OTP digit boxes, which UiKit has no component for.
 
 ### Documentation

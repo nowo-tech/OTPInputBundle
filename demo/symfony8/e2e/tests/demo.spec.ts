@@ -43,7 +43,7 @@ test.describe('OtpInput demo (JavaScript enabled)', () => {
     await expect(hidden).toHaveValue('123456', { timeout: 5000 });
 
     await page.getByRole('button', { name: 'Submit OTP' }).click();
-    await expect(page.getByRole('alert')).toContainText('123456');
+    await expect(page.getByTestId('demo-platform-flashes')).toContainText('123456');
   });
 
   test('shows the boxes and hides the field under Tailwind v4-like CSS (RA-I2)', async ({ page }) => {
