@@ -30,7 +30,7 @@ test.describe('OtpInput demo (JavaScript disabled)', () => {
     await page.goto('/demo/otp/numeric-6');
     await page.getByRole('textbox', { name: 'OTP code' }).fill('654321');
     await page.getByRole('button', { name: 'Submit OTP' }).click();
-    await expect(page.getByRole('alert')).toContainText('654321');
+    await expect(page.getByTestId('demo-platform-flashes')).toContainText('654321');
   });
 
   test('accepts a code typed with a space or a dash (RA-M1)', async ({ page }) => {
@@ -39,7 +39,7 @@ test.describe('OtpInput demo (JavaScript disabled)', () => {
       await page.getByRole('textbox', { name: 'OTP code' }).pressSequentially(typed);
       await expect(page.getByRole('textbox', { name: 'OTP code' })).toHaveValue(typed);
       await page.getByRole('button', { name: 'Submit OTP' }).click();
-      await expect(page.getByRole('alert')).toContainText('123456');
+      await expect(page.getByTestId('demo-platform-flashes')).toContainText('123456');
     }
   });
 
@@ -47,7 +47,7 @@ test.describe('OtpInput demo (JavaScript disabled)', () => {
     await page.goto('/demo/otp/alphanumeric-8');
     await page.getByRole('textbox', { name: 'OTP code' }).fill('ab12cd34');
     await page.getByRole('button', { name: 'Submit OTP' }).click();
-    await expect(page.getByRole('alert')).toContainText('AB12CD34');
+    await expect(page.getByTestId('demo-platform-flashes')).toContainText('AB12CD34');
   });
 
 });
@@ -74,7 +74,7 @@ test.describe('OtpInput demo (otp-input.js blocked)', () => {
     await expect(page.locator('[data-nowo-otp-digit]').first()).toBeHidden();
     await page.getByRole('textbox', { name: 'OTP code' }).fill('112233');
     await page.getByRole('button', { name: 'Submit OTP' }).click();
-    await expect(page.getByRole('alert')).toContainText('112233');
+    await expect(page.getByTestId('demo-platform-flashes')).toContainText('112233');
   });
 
   test('has no WCAG 2 A/AA violations in the fallback form', async ({ page }) => {

@@ -1,24 +1,17 @@
-{#- REQ-DEMO-014: the demo shell is UiKit's admin layout with UiKit's default theme (nowo-ui.css from the bundle's own
-    asset package, no CSS framework, no CDN). demo.css only sizes the bundle's own OTP digit boxes. -#}
-{% extends '@NowoUiKit/layout/admin.html.twig' %}
-
+{#- REQ-DEMO-014: the demo runs inside UiKit's shared demo platform shell. This file only declares the demo. -#}
+{% extends '@NowoUiKit/demo_platform/layout.html.twig' %}
+{% set nowo_ui_demo_platform = {
+    bundle: 'OTP Input',
+    home_route: 'app_demo_index',
+    repository: 'https://github.com/nowo-tech/OTPInputBundle',
+    translation_domain: false,
+    nav: [
+        {label: 'OTP demos', route: 'app_demo_index', section: 'OTP Input', testid: 'demo-nav-app_demo_index'},
+        {label: '6-digit numeric (SMS style)', route: 'app_demo_otp', params: {slug: 'numeric-6'}, section: 'Examples', testid: 'demo-nav-app_demo_otp-numeric-6'},
+        {label: '8-character alphanumeric', route: 'app_demo_otp', params: {slug: 'alphanumeric-8'}, section: 'Examples', testid: 'demo-nav-app_demo_otp-alphanumeric-8'},
+        {label: '4-digit PIN', route: 'app_demo_otp', params: {slug: 'short-pin-4'}, section: 'Examples', testid: 'demo-nav-app_demo_otp-short-pin-4'},
+    ],
+} %}
 {% block nowo_ui_document_title %}{% block title %}OTP Input Demo{% endblock %} — Symfony 8{% endblock %}
-
-{% block nowo_ui_styles %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('demo.css') }}">
-{% endblock %}
-
-{% block nowo_ui_navigation %}
-    <header class="nowo-ui-header" data-testid="demo-masthead">
-        <a class="nowo-ui-brand" href="{{ path('app_demo_index') }}">OTP Input Bundle · Symfony 8</a>
-        <nav class="nowo-ui-menu" aria-label="Demo">
-            <a class="nowo-ui-link" href="{{ path('app_demo_index') }}" aria-current="page" data-testid="demo-nav-app_demo_index">OTP demos</a>
-        </nav>
-        <div class="nowo-ui-header__end">
-            {{ include('@NowoUiKitBundle/partials/_theme_toggle.html.twig', { compact: true }, false) }}
-        </div>
-    </header>
-{% endblock %}
 
 {% block nowo_ui_content %}{% block body %}{% endblock %}{% endblock %}

@@ -31,12 +31,12 @@ final class OtpDemoType extends AbstractType
             'numeric_only'    => $options['numeric_only'],
             'uppercase'       => $options['uppercase'],
             'container_class' => 'otp-demo-container',
-            'input_class'     => 'nowo-ui-input otp-demo-digit',
+            'input_class'     => 'nowo-ui-input',
             'gap_class'       => 'nowo-ui-toolbar',
         ]);
         $this->addWithDefaults($builder, 'submit', SubmitType::class, [
             'label' => 'Submit OTP',
-            'attr'  => ['class' => 'nowo-ui-btn nowo-ui-btn--primary'],
+            'attr'  => ['class' => 'nowo-ui-btn nowo-ui-btn--primary', 'form' => 'demo-otp-form'],
         ]);
     }
 

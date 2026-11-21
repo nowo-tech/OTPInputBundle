@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 use function sprintf;
 
@@ -57,7 +58,7 @@ final class OtpDemoController extends AbstractController
     }
 
     #[Route(path: '/demo/otp/{slug}', name: 'app_demo_otp', methods: ['GET', 'POST'], requirements: ['slug' => '[a-z0-9\-]+'])]
-    public function otp(Request $request, string $slug): Response
+    public function otp(Request $request, string $slug, TranslatorInterface $translator): Response
     {
         if (!isset(self::EXAMPLES[$slug])) {
             throw $this->createNotFoundException(sprintf('Unknown demo: %s', $slug));
@@ -78,7 +79,7 @@ final class OtpDemoController extends AbstractController
             /** @var array{otp: string} $data */
             $data     = $form->getData();
             $otpValue = $data['otp'];
-
+            $this->addFlash('success', $translator->trans('demo.submitted', ['%value%' => $otpValue], 'messages'));
         }
 
         return $this->render('otp_demo/show.html.twig', [

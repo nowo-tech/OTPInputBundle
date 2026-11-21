@@ -1,2 +1,3 @@
 demo:
   title: 'OTP Input Bundle Demo'
+  submitted: 'Submitted OTP value: %value%'
