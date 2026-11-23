@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.10.0] - 2026-11-23](#1100---2026-11-23)
 - [[1.9.0] - 2026-11-16](#190---2026-11-16)
 - [[1.8.3] - 2026-10-25](#183---2026-10-25)
 - [[1.8.2] - 2026-10-21](#182---2026-10-21)
@@ -33,6 +34,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.10.0] - 2026-11-23
+
 ### Changed
 
 - Demo: runs in UiKit's demo platform shell (`nowo-tech/ui-kit-bundle` ^2.60); the demo's own header is gone and the pages use the shell page headers and section cards. The demo stylesheet (`public/demo.css`) is gone; the submitted value shows as a shell flash (translated in the controller). Demo only, no bundle change.
@@ -52,6 +55,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - **Console**: quiet switch for the script-loaded line: `<html data-nowo-console="quiet">` or `globalThis.NOWO_CONSOLE = 'quiet'` prints nothing. The default is unchanged.
+
+[1.10.0]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.10.0
 
 ## [1.9.0] - 2026-11-16
 
