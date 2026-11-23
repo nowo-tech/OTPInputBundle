@@ -37,6 +37,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Demo: runs in UiKit's demo platform shell (`nowo-tech/ui-kit-bundle` ^2.60); the demo's own header is gone and the pages use the shell page headers and section cards. The demo stylesheet (`public/demo.css`) is gone; the submitted value shows as a shell flash (translated in the controller). Demo only, no bundle change.
 - Demo: aligned with UiKit (masthead menu with `demo-nav-*` test id and the UiKit theme toggle, `· Symfony 8` brand and title suffix). `demo.css` stays: it only sizes the bundle's own OTP digit boxes, which UiKit has no component for.
+- **Console**: the script-loaded line of `otp-input.js` now reads `📦 [otp-input] script loaded, build: 2026-11-23 14:05 UTC`: a readable UTC build time instead of the opaque source hash. The time comes from the committed `build-info.json` (`{sourceHash, builtAt}`): the source hash stays the change detector, `builtAt` is reused while the sources are unchanged and renewed only when they change, so rebuilding unchanged sources never rewrites the committed assets (no wall-clock stamp, no git date).
 
 ### Documentation
 
@@ -47,6 +48,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed (demo)
 
 - Demo `.gitignore` ignores `/.pnpm-store` (REQ-GITIGNORE-003); `demo-screenshots` help names WebP; unused `NowoIconSelectorBundle` demo translations removed.
+
+### Added
+
+- **Console**: quiet switch for the script-loaded line: `<html data-nowo-console="quiet">` or `globalThis.NOWO_CONSOLE = 'quiet'` prints nothing. The default is unchanged.
 
 ## [1.9.0] - 2026-11-16
 

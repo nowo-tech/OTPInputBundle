@@ -19,6 +19,7 @@ Regenerate with `make -C demo/symfony8 demo-screenshots` (REQ-DEMO-013).
 - [Customization](#customization)
 - [Using it from a DDD / hexagonal application](#using-it-from-a-ddd--hexagonal-application)
 - [Twig template overrides](#twig-template-overrides)
+- [Browser console](#browser-console)
 
 ## Form type
 
@@ -164,3 +165,6 @@ Prefer the upgrade-safe path: the field options (`container_class`, `input_class
 
 **Recovering upstream after a freeze:** delete (or rename aside) the application override, clear the cache (`php bin/console cache:clear`), and re-apply only the customisation you still need. Diff your copy against the new vendor file under `vendor/nowo-tech/otp-input-bundle/src/Resources/views/` before re-copying.
 
+## Browser console
+
+The bundle's script logs one line when it loads (`📦 [otp-input] script loaded, build: 2026-11-23 14:05 UTC`) so a developer can tell which build a page runs. To silence it, set `<html data-nowo-console="quiet">` or `globalThis.NOWO_CONSOLE = 'quiet'` before the script loads; nothing is printed then. The default is unchanged.
