@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[1.10.1] - 2026-11-26](#1101---2026-11-26)
 - [[1.10.0] - 2026-11-23](#1100---2026-11-23)
 - [[1.9.0] - 2026-11-16](#190---2026-11-16)
 - [[1.8.3] - 2026-10-25](#183---2026-10-25)
@@ -34,9 +35,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [1.10.1] - 2026-11-26
+
 ### Fixed
 
 - The `📦 [name] script loaded` console banner now prints once per page, even when the script is loaded twice: per-name once-guard (a `Set` on `globalThis`) in `logger.ts`, with a Vitest test and rebuilt assets (REQ-ASSETS-005).
+
+[1.10.1]: https://github.com/nowo-tech/OTPInputBundle/releases/tag/v1.10.1
 
 ## [1.10.0] - 2026-11-23
 
